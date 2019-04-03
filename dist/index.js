@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("\n\n//# sourceURL=webpack:///./src/app.js?");
+eval("var searchIco = document.getElementById('ico');\nvar searchInput = document.querySelector('.prompt');\nvar todaySection = document.querySelector('.today');\n\nvar showCity = function showCity() {\n  todaySection.innerHTML = \"<p class='city'>\".concat(searchInput.value, \"</p>\");\n  searchInput.value = '';\n};\n\nsearchIco.addEventListener('click', showCity);\n\n//# sourceURL=webpack:///./src/app.js?");
 
 /***/ })
 

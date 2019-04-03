@@ -33,6 +33,7 @@
 }
 
 .today {
+    position: relative;
     grid-area: 1 / 2 / 3 / 3;
     background-color: var(--section);
     border-radius: var(--radius);
@@ -58,4 +59,17 @@
     padding: 10px;
     font-size: 2.2em;
     color: #333;
+    cursor: pointer;
+}
+
+.fas:hover {
+    transform: scale(1.2)
+}
+
+.city {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3em;
 }
