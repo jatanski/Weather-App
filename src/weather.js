@@ -1,8 +1,13 @@
 import { curWeather } from './weatherResponse';
 
 class Weather {
-    constructor() {
-        //this.full = curWeather.data[0];
+    constructor(city) {
+        new Promise((resolve,reject) => {
+            resolve(this.getCityWeather(city));
+        })
+        .then(res => {
+            return this.full = res;
+        })
     }
 
     getCityWeather(city){

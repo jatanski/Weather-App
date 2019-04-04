@@ -1,8 +1,10 @@
-import { Weather } from './weather';
+import { curWeather } from './weatherResponse';
 
 const searchIco = document.getElementById('ico')
 const searchInput = document.querySelector('.prompt');
 const todaySection = document.querySelector('.today');
+
+
 
 const showCity = () => {
     todaySection.innerHTML = `<p class='city'>${searchInput.value}</p>`;
@@ -10,18 +12,22 @@ const showCity = () => {
     searchInput.value = ''
 }
 
-const setWeatherData =  (city) => {
-    const weather = new Weather();
-    const weatherData = new Promise((resolve,reject) => {
-        resolve(weather.getCityWeather(city));
-    });
+const weToday = (weat) => { //dodaje boxa z temperaturą
+    let tempBox = document.createElement('div');
+    tempBox.innerHTML = `<h2>${weat.temp} &deg;C</h2>`
+    todaySection.append(tempBox);
+}
 
-    weatherData.then(res => {
-        let temp = document.createElement('div');
-        temp.setAttribute('class','city');
-        temp.innerHTML = `<h2>${res.data[0].temp}</h2>`;
-        todaySection.appendChild(temp);
-    });
+const setWeatherData = (city) => {
+    new Promise((resolve, reject) => {
+            resolve(curWeather(`city=${city}`));
+        })
+        .then(res => {
+            return res.data[0];
+        })
+        .then(wetDat => { //tutaj wszystkie funkcje/operacje dodające dane z API pogodowego do DOM
+            weToday(wetDat);
+        })
 }
 
 searchIco.addEventListener('click', showCity);

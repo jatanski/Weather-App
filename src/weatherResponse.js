@@ -3,8 +3,6 @@ const apiKey = '4c35b4e8b88542c58826712e428d23ff';
 
 export const curWeather = async (param) => {
     const url = `https://api.weatherbit.io/v2.0/current?${param}&key=${apiKey}`;
-    //console.log(url);
-    let weatherNow;
 
     const fetching = await fetch(url);
     return await fetching.json();
@@ -55,3 +53,4 @@ export const curWeather = async (param) => {
 //         }],
 //         "count": 1
 //     }
+
