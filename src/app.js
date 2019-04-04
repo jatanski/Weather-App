@@ -6,7 +6,9 @@ import {
 
 const searchIco = document.getElementById('ico')
 const searchInput = document.querySelector('.prompt');
-const todaySection = document.querySelector('.today');
+const searchForm = document.querySelector('.look')
+const city = document.getElementById('city');
+const tempNow = document.querySelector('.temp-now')
 
 let hour = hourWeather(`city=Wroclaw`);
 hour.then(res => {
@@ -19,15 +21,19 @@ days.then(res => {
 })
 
 const showCity = () => {
-    todaySection.innerHTML = `<p class='city'>${searchInput.value}</p>`;
+    city.innerText = searchInput.value;
     setWeatherData(searchInput.value);
     searchInput.value = ''
 }
 
-const weToday = (weat) => { //dodaje boxa z temperaturą
-    let tempBox = document.createElement('div');
-    tempBox.innerHTML = `<h2>${weat.temp} &deg;C</h2>`
-    todaySection.append(tempBox);
+const showCityEnter = (e) => {
+    e.preventDefault();
+    showCity()
+}
+
+const weToday = (weat) => { //Aktualizuje aktualną temperaturę
+    const temp = Math.round(weat.temp)
+    tempNow.innerHTML = `${temp}°C`
 }
 
 const setWeatherData = (city) => {
@@ -38,6 +44,7 @@ const setWeatherData = (city) => {
 }
 
 searchIco.addEventListener('click', showCity);
+searchForm.addEventListener('submit', showCityEnter);
 
 // const weather = new Weather();
 
