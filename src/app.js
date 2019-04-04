@@ -1,4 +1,8 @@
-import { curWeather, hourWeather, daysWeather } from './weatherResponse';
+import {
+    curWeather,
+    hourWeather,
+    daysWeather
+} from './weatherResponse';
 
 const searchIco = document.getElementById('ico')
 const searchInput = document.querySelector('.prompt');

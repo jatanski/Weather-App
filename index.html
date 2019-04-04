@@ -2,28 +2,108 @@
 <html lang="pl">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Weather App</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Weather App</title>
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/search.css">
+   <link rel="stylesheet" href="css/next-days.css">
+   <link rel="stylesheet" href="css/today.css">
 </head>
 
 <body>
-    <div class="wrap">
-        <div class="search">
-            <form action="" class="look">
-                <input type="text" id="search" class="prompt" placeholder="Podaj miejscowość">
-                <i id="ico" class="fas fa-search"></i>
-                <!-- <i class="fas fa-microphone"></i> -->
-            </form>
-        </div>
-        <section class="next-day"></section>
-        <section class="today"></section>
-    </div>
-    <script src="dist/index.js"></script>
+   <div class="wrap">
+      <section class="search">
+         <form action="" class="look">
+            <input type="text" id="search" class="prompt" placeholder="Podaj miejscowość">
+            <i id="ico" class="fas fa-search"></i>
+            <!-- <i class="fas fa-microphone"></i> -->
+         </form>
+      </section>
+      <section class="next-days">
+         <article class="next-day">
+            <section class="date">05.04</section>
+            <section class="weather-ico"><i class="fas fa-cloud-moon"></i></section>
+            <section class="temp">
+               <div class="day">16&deg;C</div>
+               <div class="night">8&deg;C</div>
+            </section>
+         </article>
+         <article class="next-day">
+            <section class="date">05.04</section>
+            <section class="weather-ico"><i class="fas fa-cloud-moon"></i></section>
+            <section class="temp">
+               <div class="day">16&deg;C</div>
+               <div class="night">8&deg;C</div>
+            </section>
+         </article>
+         <article class="next-day">
+            <section class="date">05.04</section>
+            <section class="weather-ico"><i class="fas fa-cloud-moon"></i></section>
+            <section class="temp">
+               <div class="day">16&deg;C</div>
+               <div class="night">8&deg;C</div>
+            </section>
+         </article>
+         <article class="next-day">
+            <section class="date">05.04</section>
+            <section class="weather-ico"><i class="fas fa-cloud-moon"></i></section>
+            <section class="temp">
+               <div class="day">16&deg;C</div>
+               <div class="night">8&deg;C</div>
+            </section>
+         </article>
+         <article class="next-day">
+            <section class="date">05.04</section>
+            <section class="weather-ico"><i class="fas fa-cloud-moon"></i></section>
+            <section class="temp">
+               <div class="day">16&deg;C</div>
+               <div class="night">8&deg;C</div>
+            </section>
+         </article>
+      </section>
+      <section class="today">
+         <header class="today-header">
+            <div class="city-temp">
+               <section class="city">Wrocław, PL</section>
+               <section class="temp-now">16&deg;C</section>
+            </div>
+            <section class="weather-ico"><i class="fas fa-cloud-moon"></i></section>
+            <section class="sun-time">
+               <p>6:28 <br> 19:24</p>
+            </section>
+         </header>
+         <article class="next-hour">
+            <section class="time">12:00</section>
+            <section class="temp">16&deg;C</section>
+            <section class="weather-ico"><i class="fas fa-cloud-moon"></i></section>
+         </article>
+         <article class="next-hour">
+            <section class="time">12:00</section>
+            <section class="temp">16&deg;C</section>
+            <section class="weather-ico"><i class="fas fa-cloud-moon"></i></section>
+         </article>
+         <article class="next-hour">
+            <section class="time">12:00</section>
+            <section class="temp">16&deg;C</section>
+            <section class="weather-ico"><i class="fas fa-cloud-moon"></i></section>
+         </article>
+         <article class="next-hour">
+            <section class="time">12:00</section>
+            <section class="temp">16&deg;C</section>
+            <section class="weather-ico"><i class="fas fa-cloud-moon"></i></section>
+         </article>
+         <article class="next-hour">
+            <section class="time">12:00</section>
+            <section class="temp">16&deg;C</section>
+            <section class="weather-ico"><i class="fas fa-cloud-moon"></i></section>
+         </article>
+      </section>
+   </div>
+   <script src="dist/index.js"></script>
 </body>
 
 </html>

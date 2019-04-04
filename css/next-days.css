@@ -1,0 +1,35 @@
+.next-days {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    color: var(--fontcolor)
+}
+
+.next-day {
+    margin: 5%;
+    text-align: center;
+}
+
+.next-day>* {
+    margin-top: 1vh;
+}
+
+.next-day .date {
+    font-size: 2.2em;
+}
+
+.next-day .weather-ico {
+    font-size: 7em;
+}
+
+.next-day .temp {
+    font-size: 2.6em;
+}
+
+.next-day .temp .day {
+    color: #f7f303;
+}
+
+.next-day .temp .night {
+    color: rgb(86, 116, 207);
+}

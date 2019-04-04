@@ -1,0 +1,63 @@
+/* Header */
+
+.today-header {
+    display: flex;
+    justify-content: space-around;
+    margin: 10% 0 7%;
+    color: var(--fontcolor)
+}
+
+.city-temp {
+    position: relative;
+    top: 8%
+}
+
+.city {
+    font-size: 2.4em;
+}
+
+.temp-now {
+    font-size: 5.8em;
+    font-weight: bold;
+}
+
+.today-header .fa-cloud-moon {
+    font-size: 8.4em;
+}
+
+.sun-time {
+    position: relative;
+    top: 30%;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.sun-time p {
+    position: relative;
+    top: 30%;
+    transform: translateY(-50%)
+}
+
+/* Next Houres */
+
+.next-hour {
+    display: flex;
+    justify-content: space-around;
+    margin: 5% 0;
+    color: var(--fontcolor)
+}
+
+.next-hour .time {
+    margin: auto 0;
+    font-size: 2.6em;
+}
+
+.next-hour .temp {
+    margin: auto 0;
+    font-size: 3.8em;
+}
+
+.next-hour .weather-ico {
+    margin: auto 0;
+    font-size: 4.5em;
+}
