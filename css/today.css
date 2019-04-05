@@ -3,7 +3,7 @@
 .today-header {
     display: flex;
     justify-content: space-around;
-    margin: 10% 0 7%;
+    margin: 10% 0 0;
     color: var(--fontcolor)
 }
 
@@ -43,7 +43,7 @@
 .next-hour {
     display: flex;
     justify-content: space-around;
-    margin: 5% 0;
+    margin: 2% 0;
     color: var(--fontcolor)
 }
 
@@ -57,7 +57,6 @@
     font-size: 3.8em;
 }
 
-.next-hour .weather-ico {
-    margin: auto 0;
-    font-size: 4.5em;
+.next-hour img {
+    width: 100%;
 }

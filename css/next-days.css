@@ -6,7 +6,8 @@
 }
 
 .next-day {
-    margin: 5%;
+    margin: 2.5% 5%;
+    flex-basis: 23%;
     text-align: center;
 }
 
@@ -18,8 +19,8 @@
     font-size: 2.4em;
 }
 
-.next-day .weather-ico {
-    font-size: 7.5em;
+.next-day img {
+    width: 90%;
 }
 
 .next-day .temp {
