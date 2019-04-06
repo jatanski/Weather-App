@@ -2,7 +2,7 @@ const date = require('date-and-time');
 
 export class NextHoursWeather {
     constructor(hour) {
-        this.time = date.addHours(new Date(hour.timestamp_utc), 2).getHours();
+        this.time = date.addHours(new Date(hour.timestamp_utc), 2).getHours()+':00';
         this.temp = Math.round(hour.app_temp);
         this.ico = `<img src="img/icons/${hour.weather.icon}.png" alt="${hour.weather.description}">`;
     }
