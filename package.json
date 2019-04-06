@@ -24,6 +24,7 @@
   "homepage": "https://github.com/jatanski/Weather-App#readme",
   "dependencies": {
     "@babel/polyfill": "^7.4.3",
+    "date-and-time": "^0.6.3",
     "nodemon": "^1.18.10"
   },
   "devDependencies": {
