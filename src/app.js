@@ -32,7 +32,7 @@ days.then(res => {
 
 const completeNextHours = (weat) => {
     const curTime = (new Date).getHours();
-    let showTime = curTime;
+    let showTime = curTime + 1;
 
     for (let i = 0; i < nextHourSections.length; i++) {
         const nextHour = new NextHoursWeather(`${showTime}:00`, Math.round(weat[i].temp), `<img src="img/icons/${weat[i].weather.icon}.png"
@@ -44,11 +44,11 @@ const completeNextHours = (weat) => {
     }
 }
 const completeNextDays = (weat) => {
-    const curDay = (new Date).getDay()
+    const curDay = (new Date).getDay() + 1
     const curMonth = (new Date).getMonth() + 1
     let showDay = curDay
     for (let i = 0; i < nextDaySections.length; i++) {
-        let thisDay = `showDay`
+        let thisDay = `${showDay}`
         if (showDay <= 9) thisDay = `0${showDay}`
 
         let thisMonth = `curMonth`
