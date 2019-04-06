@@ -9,6 +9,9 @@ import {
     NextDaysWeather
 } from './NextWeather'
 
+import{curLoc} from './currentLocal';
+
+
 const searchIco = document.getElementById('ico')
 const searchInput = document.querySelector('.prompt');
 const searchForm = document.querySelector('.look')
@@ -19,49 +22,35 @@ const nextHourSections = [...document.querySelectorAll('.next-hour')]
 const nextDaySections = [...document.querySelectorAll('.next-day')]
 const sunTime = document.querySelector('.sun-time')
 
+const showPosition = (position) => {
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
+    setWeatherData(`lat=${latitude}&lon=${longitude}`);
+}
 
-let hour = hourWeather(`city=Wroclaw`);
-hour.then(res => {
-    console.log(res);
-})
-
-let days = daysWeather(`city=Wroclaw`);
-days.then(res => {
-    console.log(res);
-})
 
 const completeNextHours = (weat) => {
-    const curTime = (new Date).getHours();
-    let showTime = curTime + 1;
+    let wHour = 0;
 
-    for (let i = 0; i < nextHourSections.length; i++) {
-        const nextHour = new NextHoursWeather(`${showTime}:00`, Math.round(weat[i].temp), `<img src="img/icons/${weat[i].weather.icon}.png"
-    alt="">`)
-        nextHourSections[i].children[0].textContent = nextHour.time
-        nextHourSections[i].children[1].textContent = `${nextHour.temp}°C`
-        nextHourSections[i].children[2].innerHTML = nextHour.ico
-        showTime = showTime + 1
-    }
+    weat.forEach(hour => {
+        const nextHour = new NextHoursWeather(hour);
+        nextHourSections[wHour].children[0].textContent = nextHour.time;
+        nextHourSections[wHour].children[1].textContent = `${nextHour.temp}°C`;
+        nextHourSections[wHour].children[2].innerHTML = nextHour.ico;
+        wHour++;
+    });
 }
+
 const completeNextDays = (weat) => {
-    const curDay = (new Date).getDay() + 1
-    const curMonth = (new Date).getMonth() + 1
-    let showDay = curDay
-    for (let i = 0; i < nextDaySections.length; i++) {
-        let thisDay = `${showDay}`
-        if (showDay <= 9) thisDay = `0${showDay}`
-
-        let thisMonth = `curMonth`
-        if (curMonth <= 9) thisMonth = `0${curMonth}`
-
-        const nextDay = new NextDaysWeather(`${thisDay}.${thisMonth}`, `<img src="img/icons/${weat[i].weather.icon}.png"
-    alt="">`, Math.round(weat[i].max_temp), Math.round(weat[i].min_temp))
-        nextDaySections[i].children[0].textContent = nextDay.date;
-        nextDaySections[i].children[1].innerHTML = nextDay.ico;
-        nextDaySections[i].children[2].firstElementChild.textContent = `${nextDay.tempDay}°C`
-        nextDaySections[i].children[2].lastElementChild.textContent = `${nextDay.tempNight}°C`
-        showDay = showDay + 1
-    }
+    let wDay = 0;
+    weat.forEach(day =>{
+        const nextDay = new NextDaysWeather(day);
+        nextDaySections[wDay].children[0].textContent = nextDay.date;
+        nextDaySections[wDay].children[1].innerHTML = nextDay.ico;
+        nextDaySections[wDay].children[2].firstElementChild.textContent = `${nextDay.tempDay}°C`;
+        nextDaySections[wDay].children[2].lastElementChild.textContent = `${nextDay.tempNight}°C`;
+        wDay++;
+    })
 }
 
 const showCity = (weat) => {
@@ -75,7 +64,7 @@ const sunRiseAndSunSet = (weat) => {
 }
 
 const showWeather = () => {
-    setWeatherData(searchInput.value);
+    setWeatherData(`city=${searchInput.value}`);
     searchInput.value = '';
 }
 
@@ -91,25 +80,28 @@ const weToday = (weat) => { //Aktualizuje aktualną temperaturę
     tempNow.innerHTML = `${temp}°C`
 }
 
-const setWeatherData = (city) => {
-    curWeather(`city=${city}`)
+const setWeatherData = (place) => {
+    curWeather(place)
         .then(res => { //tutaj wszystkie funkcje/operacje dodające dane z API pogodowego do DOM
             weToday(res);
             showCity(res);
             sunRiseAndSunSet(res);
         })
-    hourWeather(`city=${city}`)
+    hourWeather(place)
         .then(res => {
+            console.log(res);
             completeNextHours(res)
         })
-    daysWeather(`city=${city}`)
+    daysWeather(place)
         .then(res => {
-            completeNextDays(res)
+            //console.log(res);
+            completeNextDays(res);
         })
 }
 
 searchIco.addEventListener('click', showWeather);
 searchForm.addEventListener('submit', showWeatherEnter);
 
+window.onload = curLoc(showPosition);
 // const weather = new Weather();
 // console.log(weather.getCityWeather('Moscow'));
