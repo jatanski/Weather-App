@@ -11,11 +11,11 @@ import {
 
 import{curLoc} from './currentLocal';
 import { speakPolish, speakEnglish } from './speechSynthesis';
-
+import { startRecognate } from './volumeRecognition';
 
 const searchIco = document.getElementById('ico')
 const microIco = document.getElementById('microIco');
-const searchInput = document.querySelector('.prompt');
+export const searchInput = document.querySelector('.prompt');
 const searchForm = document.querySelector('.look')
 export const city = document.getElementById('city');
 export const tempNow = document.querySelector('.temp-now');
@@ -103,7 +103,8 @@ const setWeatherData = (place) => {
 
 searchIco.addEventListener('click', showWeather);
 searchForm.addEventListener('submit', showWeatherEnter);
-microIco.addEventListener('click', speakEnglish);
+volumeIco.addEventListener('click', speakPolish);
+microIco.addEventListener('click', startRecognate);
 
 window.onload = curLoc(showPosition);
 // const weather = new Weather();

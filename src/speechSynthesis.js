@@ -1,6 +1,4 @@
 import { city, tempNow, weatherIcoNow, nextDaySections} from './app';
-
-const icoNow = document.getElementById("icoNow").alt;
 let speaks = [
     {
         "name": "Zosia",
@@ -21,7 +19,7 @@ function speakPolish () {
         + ", w nocy " + nextDaySections[0].children[2].lastElementChild.textContent
         + ", pojutrze w dzień " + nextDaySections[1].children[2].firstElementChild.textContent
         + ", w nocy " + nextDaySections[1].children[2].lastElementChild.textContent;
-    msg.text = city.textContent.replace(/ .*/, '') + " obecnie " + tempNow.textContent + icoNow + nextDaysText;
+    msg.text = city.textContent.split(',')[0] + " obecnie " + tempNow.textContent + nextDaysText;
     console.log(msg.text);
     const voice = speaks[0];
     msg.voiceURI = voice.name;
@@ -33,7 +31,7 @@ function speakEnglish () {
         + ", in night " + nextDaySections[0].children[2].lastElementChild.textContent
         + ", the day after tomorrow it will be " + nextDaySections[1].children[2].firstElementChild.textContent
         + ", and in the night " + nextDaySections[1].children[2].lastElementChild.textContent;
-    msg.text = city.textContent.replace(/ .*/, '') + " There is " + tempNow.textContent + " right now "+ nextDaysText;
+    msg.text = city.textContent.split(',')[0] + " There is " + tempNow.textContent + " right now "+ nextDaysText;
     console.log(msg.text);
     const voice = speaks[1];
     msg.voiceURI = voice.name;
