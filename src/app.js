@@ -10,16 +10,18 @@ import {
 } from './NextWeather'
 
 import{curLoc} from './currentLocal';
+import { speakPolish, speakEnglish } from './speechSynthesis';
 
 
 const searchIco = document.getElementById('ico')
+const microIco = document.getElementById('microIco');
 const searchInput = document.querySelector('.prompt');
 const searchForm = document.querySelector('.look')
-const city = document.getElementById('city');
-const tempNow = document.querySelector('.temp-now');
-const weatherIcoNow = document.querySelector('.weather-ico-now')
+export const city = document.getElementById('city');
+export const tempNow = document.querySelector('.temp-now');
+export const weatherIcoNow = document.querySelector('.weather-ico-now')
 const nextHourSections = [...document.querySelectorAll('.next-hour')]
-const nextDaySections = [...document.querySelectorAll('.next-day')]
+export const nextDaySections = [...document.querySelectorAll('.next-day')]
 const sunTime = document.querySelector('.sun-time')
 
 const showPosition = (position) => {
@@ -101,6 +103,7 @@ const setWeatherData = (place) => {
 
 searchIco.addEventListener('click', showWeather);
 searchForm.addEventListener('submit', showWeatherEnter);
+microIco.addEventListener('click', speakEnglish);
 
 window.onload = curLoc(showPosition);
 // const weather = new Weather();

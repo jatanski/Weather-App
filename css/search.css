@@ -14,13 +14,13 @@
     border-radius: var(--radius);
 }
 
-.fa-search {
+.fa-search, .fa-microphone {
     padding: 10px;
     font-size: 2.2em;
     color: #333;
     cursor: pointer;
 }
 
-.fa-search:hover {
+.fa-search:hover, .fa-microphone:hover {
     transform: scale(1.2)
 }
