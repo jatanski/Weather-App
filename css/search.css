@@ -20,16 +20,12 @@
     border-radius: var(--radius);
 }
 
-.fa-search,
-.fa-microphone,
-.fa-volume-up {
 .saggestions {
     position: relative;
     /*perspective: 20px;*/
 }
 
 .suggestions li {
-    /* position: absolute; */
     background: white;
     list-style: none;
     border-bottom: 1px solid #D8D8D8;
@@ -57,7 +53,9 @@ span.population {
     font-size: 15px;
 }
 
-.fa-search {
+.fa-search,
+.fa-microphone,
+.fa-volume-up {
     padding: 10px;
     font-size: 2.2em;
     color: #333;
