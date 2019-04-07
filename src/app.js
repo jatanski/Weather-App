@@ -9,8 +9,13 @@ import {
     NextDaysWeather
 } from './NextWeather'
 
-import{curLoc} from './currentLocal';
+import {
+    curLoc
+} from './currentLocal';
 
+import {
+    findMatches,
+} from './cityBrowser'
 
 const searchIco = document.getElementById('ico')
 const searchInput = document.querySelector('.prompt');
@@ -21,6 +26,7 @@ const weatherIcoNow = document.querySelector('.weather-ico-now')
 const nextHourSections = [...document.querySelectorAll('.next-hour')]
 const nextDaySections = [...document.querySelectorAll('.next-day')]
 const sunTime = document.querySelector('.sun-time')
+const searchUl = document.querySelector('.suggestions')
 
 const showPosition = (position) => {
     let latitude = position.coords.latitude;
@@ -43,7 +49,7 @@ const completeNextHours = (weat) => {
 
 const completeNextDays = (weat) => {
     let wDay = 0;
-    weat.forEach(day =>{
+    weat.forEach(day => {
         const nextDay = new NextDaysWeather(day);
         nextDaySections[wDay].children[0].textContent = nextDay.date;
         nextDaySections[wDay].children[1].innerHTML = nextDay.ico;
@@ -63,9 +69,10 @@ const sunRiseAndSunSet = (weat) => {
     sunTime.innerHTML = ` <p>${rise} <br> ${set}</p>`
 }
 
-const showWeather = () => {
-    setWeatherData(`city=${searchInput.value}`);
+const showWeather = (city = searchInput.value) => {
+    setWeatherData(`city=${city}`);
     searchInput.value = '';
+    searchUl.innerHTML = '';
 }
 
 const showWeatherEnter = (e) => {
@@ -101,7 +108,12 @@ const setWeatherData = (place) => {
 
 searchIco.addEventListener('click', showWeather);
 searchForm.addEventListener('submit', showWeatherEnter);
+searchInput.addEventListener('input', findMatches)
 
 window.onload = curLoc(showPosition);
 // const weather = new Weather();
 // console.log(weather.getCityWeather('Moscow'));
+
+export {
+    showWeather
+}
