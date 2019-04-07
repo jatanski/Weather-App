@@ -104,6 +104,12 @@ const setWeatherData = (place) => {
 searchIco.addEventListener('click', showWeather);
 searchForm.addEventListener('submit', showWeatherEnter);
 volumeIco.addEventListener('click', speakPolish);
+window.addEventListener('keypress', (ev)=> {
+    if(ev.keyCode == '0' || ev.keyCode == '32'){
+        ev.preventDefault();
+        speakPolish();
+    }
+});
 microIco.addEventListener('click', startRecognate);
 
 window.onload = curLoc(showPosition);
