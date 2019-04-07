@@ -20,6 +20,9 @@
     border-radius: var(--radius);
 }
 
+.fa-search,
+.fa-microphone,
+.fa-volume-up {
 .saggestions {
     position: relative;
     /*perspective: 20px;*/
@@ -61,6 +64,8 @@ span.population {
     cursor: pointer;
 }
 
-.fa-search:hover {
+.fa-search:hover,
+.fa-microphone:hover,
+.fa-volume-up:hover {
     transform: scale(1.2)
 }

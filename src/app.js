@@ -9,22 +9,23 @@ import {
     NextDaysWeather
 } from './NextWeather'
 
-import {
-    curLoc
-} from './currentLocal';
+import{curLoc} from './currentLocal';
+import { speakPolish, speakEnglish } from './speechSynthesis';
+import { startRecognate } from './volumeRecognition';
 
 import {
     findMatches,
 } from './cityBrowser'
 
 const searchIco = document.getElementById('ico')
-const searchInput = document.querySelector('.prompt');
+const microIco = document.getElementById('microIco');
+export const searchInput = document.querySelector('.prompt');
 const searchForm = document.querySelector('.look')
-const city = document.getElementById('city');
-const tempNow = document.querySelector('.temp-now');
-const weatherIcoNow = document.querySelector('.weather-ico-now')
+export const city = document.getElementById('city');
+export const tempNow = document.querySelector('.temp-now');
+export const weatherIcoNow = document.querySelector('.weather-ico-now')
 const nextHourSections = [...document.querySelectorAll('.next-hour')]
-const nextDaySections = [...document.querySelectorAll('.next-day')]
+export const nextDaySections = [...document.querySelectorAll('.next-day')]
 const sunTime = document.querySelector('.sun-time')
 const searchUl = document.querySelector('.suggestions')
 
@@ -108,6 +109,14 @@ const setWeatherData = (place) => {
 
 searchIco.addEventListener('click', showWeather);
 searchForm.addEventListener('submit', showWeatherEnter);
+volumeIco.addEventListener('click', speakPolish);
+window.addEventListener('keypress', (ev)=> {
+    if(ev.keyCode == '0' || ev.keyCode == '32'){
+        ev.preventDefault();
+        speakPolish();
+    }
+});
+microIco.addEventListener('click', startRecognate);
 searchInput.addEventListener('input', findMatches)
 
 window.onload = curLoc(showPosition);
