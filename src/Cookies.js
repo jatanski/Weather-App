@@ -46,7 +46,10 @@ export const isMainCitySet = (setWeather, curLoc, curLocCallback) => {
 }
 
 export const setMainCity = (displayedCity) => {
-    //document.querySelector('.search').removeChild(document.querySelector('#defCityButt')) //usuwa ew. przycisk z poprzedniego wyszukania
+    const bttn = document.querySelector('#defCityButt'); //usuwa ew. przycisk z poprzedniego wyszukania
+    if(bttn){
+        document.querySelector('.search').removeChild(bttn);
+    }
     //po wyszukaniu sprawdza czy miasto wyszukane jest ustawione jako domyślne, jesli tak to return
     console.log(Cookies.get('isMainCity'));
     if (Cookies.get('isMainCity') == displayedCity) {
@@ -59,7 +62,7 @@ export const setMainCity = (displayedCity) => {
         document.querySelector('.search').appendChild(setDefaultCityButton);
 
         setDefaultCityButton.addEventListener('click', e => {
-            Cookies.set('isMainCity', displayedCity);
+            Cookies.set('isMainCity', displayedCity, {expires:365});
             //od razu usuwam przycisk bo po co pokazywać jak miasto domyślne?
             document.querySelector('.search').removeChild(setDefaultCityButton);
         })

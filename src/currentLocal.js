@@ -1,9 +1,3 @@
-const showPosition = (position) => {
-    let latitude = position.coords.latitude;
-    let longitude = position.coords.longitude;
-    console.log(`${latitude} || ${longitude}`)
-}
-
 const showError = (error) => {
     switch (error.code) {
         case error.PERMISSION_DENIED:

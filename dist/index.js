@@ -5373,7 +5373,176 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!\n * JavaScript Cookie v2.2.0\n * https://github.com/js-cookie/js-cookie\n *\n * Copyright 2006, 2015 Klaus Hartl & Fagner Brack\n * Released under the MIT license\n */\n;(function (factory) {\n\tvar registeredInModuleLoader = false;\n\tif (true) {\n\t\t!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),\n\t\t\t\t__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?\n\t\t\t\t(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :\n\t\t\t\t__WEBPACK_AMD_DEFINE_FACTORY__),\n\t\t\t\t__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));\n\t\tregisteredInModuleLoader = true;\n\t}\n\tif (true) {\n\t\tmodule.exports = factory();\n\t\tregisteredInModuleLoader = true;\n\t}\n\tif (!registeredInModuleLoader) {\n\t\tvar OldCookies = window.Cookies;\n\t\tvar api = window.Cookies = factory();\n\t\tapi.noConflict = function () {\n\t\t\twindow.Cookies = OldCookies;\n\t\t\treturn api;\n\t\t};\n\t}\n}(function () {\n\tfunction extend () {\n\t\tvar i = 0;\n\t\tvar result = {};\n\t\tfor (; i < arguments.length; i++) {\n\t\t\tvar attributes = arguments[ i ];\n\t\t\tfor (var key in attributes) {\n\t\t\t\tresult[key] = attributes[key];\n\t\t\t}\n\t\t}\n\t\treturn result;\n\t}\n\n\tfunction init (converter) {\n\t\tfunction api (key, value, attributes) {\n\t\t\tvar result;\n\t\t\tif (typeof document === 'undefined') {\n\t\t\t\treturn;\n\t\t\t}\n\n\t\t\t// Write\n\n\t\t\tif (arguments.length > 1) {\n\t\t\t\tattributes = extend({\n\t\t\t\t\tpath: '/'\n\t\t\t\t}, api.defaults, attributes);\n\n\t\t\t\tif (typeof attributes.expires === 'number') {\n\t\t\t\t\tvar expires = new Date();\n\t\t\t\t\texpires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);\n\t\t\t\t\tattributes.expires = expires;\n\t\t\t\t}\n\n\t\t\t\t// We're using \"expires\" because \"max-age\" is not supported by IE\n\t\t\t\tattributes.expires = attributes.expires ? attributes.expires.toUTCString() : '';\n\n\t\t\t\ttry {\n\t\t\t\t\tresult = JSON.stringify(value);\n\t\t\t\t\tif (/^[\\{\\[]/.test(result)) {\n\t\t\t\t\t\tvalue = result;\n\t\t\t\t\t}\n\t\t\t\t} catch (e) {}\n\n\t\t\t\tif (!converter.write) {\n\t\t\t\t\tvalue = encodeURIComponent(String(value))\n\t\t\t\t\t\t.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);\n\t\t\t\t} else {\n\t\t\t\t\tvalue = converter.write(value, key);\n\t\t\t\t}\n\n\t\t\t\tkey = encodeURIComponent(String(key));\n\t\t\t\tkey = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);\n\t\t\t\tkey = key.replace(/[\\(\\)]/g, escape);\n\n\t\t\t\tvar stringifiedAttributes = '';\n\n\t\t\t\tfor (var attributeName in attributes) {\n\t\t\t\t\tif (!attributes[attributeName]) {\n\t\t\t\t\t\tcontinue;\n\t\t\t\t\t}\n\t\t\t\t\tstringifiedAttributes += '; ' + attributeName;\n\t\t\t\t\tif (attributes[attributeName] === true) {\n\t\t\t\t\t\tcontinue;\n\t\t\t\t\t}\n\t\t\t\t\tstringifiedAttributes += '=' + attributes[attributeName];\n\t\t\t\t}\n\t\t\t\treturn (document.cookie = key + '=' + value + stringifiedAttributes);\n\t\t\t}\n\n\t\t\t// Read\n\n\t\t\tif (!key) {\n\t\t\t\tresult = {};\n\t\t\t}\n\n\t\t\t// To prevent the for loop in the first place assign an empty array\n\t\t\t// in case there are no cookies at all. Also prevents odd result when\n\t\t\t// calling \"get()\"\n\t\t\tvar cookies = document.cookie ? document.cookie.split('; ') : [];\n\t\t\tvar rdecode = /(%[0-9A-Z]{2})+/g;\n\t\t\tvar i = 0;\n\n\t\t\tfor (; i < cookies.length; i++) {\n\t\t\t\tvar parts = cookies[i].split('=');\n\t\t\t\tvar cookie = parts.slice(1).join('=');\n\n\t\t\t\tif (!this.json && cookie.charAt(0) === '\"') {\n\t\t\t\t\tcookie = cookie.slice(1, -1);\n\t\t\t\t}\n\n\t\t\t\ttry {\n\t\t\t\t\tvar name = parts[0].replace(rdecode, decodeURIComponent);\n\t\t\t\t\tcookie = converter.read ?\n\t\t\t\t\t\tconverter.read(cookie, name) : converter(cookie, name) ||\n\t\t\t\t\t\tcookie.replace(rdecode, decodeURIComponent);\n\n\t\t\t\t\tif (this.json) {\n\t\t\t\t\t\ttry {\n\t\t\t\t\t\t\tcookie = JSON.parse(cookie);\n\t\t\t\t\t\t} catch (e) {}\n\t\t\t\t\t}\n\n\t\t\t\t\tif (key === name) {\n\t\t\t\t\t\tresult = cookie;\n\t\t\t\t\t\tbreak;\n\t\t\t\t\t}\n\n\t\t\t\t\tif (!key) {\n\t\t\t\t\t\tresult[name] = cookie;\n\t\t\t\t\t}\n\t\t\t\t} catch (e) {}\n\t\t\t}\n\n\t\t\treturn result;\n\t\t}\n\n\t\tapi.set = api;\n\t\tapi.get = function (key) {\n\t\t\treturn api.call(api, key);\n\t\t};\n\t\tapi.getJSON = function () {\n\t\t\treturn api.apply({\n\t\t\t\tjson: true\n\t\t\t}, [].slice.call(arguments));\n\t\t};\n\t\tapi.defaults = {};\n\n\t\tapi.remove = function (key, attributes) {\n\t\t\tapi(key, '', extend(attributes, {\n\t\t\t\texpires: -1\n\t\t\t}));\n\t\t};\n\n\t\tapi.withConverter = init;\n\n\t\treturn api;\n\t}\n\n\treturn init(function () {});\n}));\n\n\n//# sourceURL=webpack:///./node_modules/js-cookie/src/js.cookie.js?");
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ * JavaScript Cookie v2.2.0
+ * https://github.com/js-cookie/js-cookie
+ *
+ * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
+ * Released under the MIT license
+ */
+;(function (factory) {
+	var registeredInModuleLoader = false;
+	if (true) {
+		!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		registeredInModuleLoader = true;
+	}
+	if (true) {
+		module.exports = factory();
+		registeredInModuleLoader = true;
+	}
+	if (!registeredInModuleLoader) {
+		var OldCookies = window.Cookies;
+		var api = window.Cookies = factory();
+		api.noConflict = function () {
+			window.Cookies = OldCookies;
+			return api;
+		};
+	}
+}(function () {
+	function extend () {
+		var i = 0;
+		var result = {};
+		for (; i < arguments.length; i++) {
+			var attributes = arguments[ i ];
+			for (var key in attributes) {
+				result[key] = attributes[key];
+			}
+		}
+		return result;
+	}
+
+	function init (converter) {
+		function api (key, value, attributes) {
+			var result;
+			if (typeof document === 'undefined') {
+				return;
+			}
+
+			// Write
+
+			if (arguments.length > 1) {
+				attributes = extend({
+					path: '/'
+				}, api.defaults, attributes);
+
+				if (typeof attributes.expires === 'number') {
+					var expires = new Date();
+					expires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);
+					attributes.expires = expires;
+				}
+
+				// We're using "expires" because "max-age" is not supported by IE
+				attributes.expires = attributes.expires ? attributes.expires.toUTCString() : '';
+
+				try {
+					result = JSON.stringify(value);
+					if (/^[\{\[]/.test(result)) {
+						value = result;
+					}
+				} catch (e) {}
+
+				if (!converter.write) {
+					value = encodeURIComponent(String(value))
+						.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
+				} else {
+					value = converter.write(value, key);
+				}
+
+				key = encodeURIComponent(String(key));
+				key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
+				key = key.replace(/[\(\)]/g, escape);
+
+				var stringifiedAttributes = '';
+
+				for (var attributeName in attributes) {
+					if (!attributes[attributeName]) {
+						continue;
+					}
+					stringifiedAttributes += '; ' + attributeName;
+					if (attributes[attributeName] === true) {
+						continue;
+					}
+					stringifiedAttributes += '=' + attributes[attributeName];
+				}
+				return (document.cookie = key + '=' + value + stringifiedAttributes);
+			}
+
+			// Read
+
+			if (!key) {
+				result = {};
+			}
+
+			// To prevent the for loop in the first place assign an empty array
+			// in case there are no cookies at all. Also prevents odd result when
+			// calling "get()"
+			var cookies = document.cookie ? document.cookie.split('; ') : [];
+			var rdecode = /(%[0-9A-Z]{2})+/g;
+			var i = 0;
+
+			for (; i < cookies.length; i++) {
+				var parts = cookies[i].split('=');
+				var cookie = parts.slice(1).join('=');
+
+				if (!this.json && cookie.charAt(0) === '"') {
+					cookie = cookie.slice(1, -1);
+				}
+
+				try {
+					var name = parts[0].replace(rdecode, decodeURIComponent);
+					cookie = converter.read ?
+						converter.read(cookie, name) : converter(cookie, name) ||
+						cookie.replace(rdecode, decodeURIComponent);
+
+					if (this.json) {
+						try {
+							cookie = JSON.parse(cookie);
+						} catch (e) {}
+					}
+
+					if (key === name) {
+						result = cookie;
+						break;
+					}
+
+					if (!key) {
+						result[name] = cookie;
+					}
+				} catch (e) {}
+			}
+
+			return result;
+		}
+
+		api.set = api;
+		api.get = function (key) {
+			return api.call(api, key);
+		};
+		api.getJSON = function () {
+			return api.apply({
+				json: true
+			}, [].slice.call(arguments));
+		};
+		api.defaults = {};
+
+		api.remove = function (key, attributes) {
+			api(key, '', extend(attributes, {
+				expires: -1
+			}));
+		};
+
+		api.withConverter = init;
+
+		return api;
+	}
+
+	return init(function () {});
+}));
+
 
 /***/ }),
 
@@ -6122,7 +6291,76 @@ try {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isCookiesAllowed\", function() { return isCookiesAllowed; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isMainCitySet\", function() { return isMainCitySet; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"setMainCity\", function() { return setMainCity; });\nvar Cookies = __webpack_require__(/*! js-cookie */ \"./node_modules/js-cookie/src/js.cookie.js\");\n\nvar isCookiesAllowed = function isCookiesAllowed() {\n  if (Boolean(Cookies.get('isAllowed'))) {\n    return;\n  } else {\n    //w tej części tworzę elementy z powiadomieniem o używaniu cookies\n    var element = document.createElement('div');\n    element.setAttribute('class', 'cookie-confirmation');\n    document.querySelector('.wrap').appendChild(element);\n    var textInfo = document.createElement('p');\n    textInfo.innerText = 'Musisz akceptować cookies';\n    element.appendChild(textInfo);\n    var button = document.createElement('button');\n    button.setAttribute('id', 'cookiesAllowed');\n    button.innerText = 'Zgadzam się';\n    element.appendChild(button);\n    button.addEventListener('click', function (e) {\n      Cookies.set('isAllowed', true, {\n        expires: 365\n      });\n      document.querySelector('.wrap').removeChild(element);\n    });\n  }\n}; //funkcja bierze 3 callbacki, setWeather to funkcja, która ma nam pobrać aktualną pogodę z podanego miasta lub szerokości geo\n// curLoc to funkcja do pobierania geolokacji jeśli nie mamy ustawionego domyślnego miasta\n// curLocCallback to funkcja callback dla curLoc\n\nvar isMainCitySet = function isMainCitySet(setWeather, curLoc, curLocCallback) {\n  //Cookies.set('isMainCity', 'Warszawa', {expires:7});\n  //console.log(Cookies.get('isMainCity'));\n  if (Boolean(Cookies.get('isMainCity'))) {\n    var input = \"city=\".concat(Cookies.get('isMainCity'));\n    console.log(input);\n    setWeather(input);\n    return;\n  } else {\n    curLoc(curLocCallback);\n  }\n};\nvar setMainCity = function setMainCity(displayedCity) {\n  //document.querySelector('.search').removeChild(document.querySelector('#defCityButt')) //usuwa ew. przycisk z poprzedniego wyszukania\n  //po wyszukaniu sprawdza czy miasto wyszukane jest ustawione jako domyślne, jesli tak to return\n  console.log(Cookies.get('isMainCity'));\n\n  if (Cookies.get('isMainCity') == displayedCity) {\n    return; //jeśli nie ma domyślnego miasta lub jest to inne miasto to daje opcję ustawienia ciastka z miastem domyslnym\n  } else {\n    var setDefaultCityButton = document.createElement('button');\n    setDefaultCityButton.innerText = 'Ustaw jako miasto domyślne';\n    setDefaultCityButton.setAttribute('id', 'defCityButt');\n    document.querySelector('.search').appendChild(setDefaultCityButton);\n    setDefaultCityButton.addEventListener('click', function (e) {\n      Cookies.set('isMainCity', displayedCity); //od razu usuwam przycisk bo po co pokazywać jak miasto domyślne?\n\n      document.querySelector('.search').removeChild(setDefaultCityButton);\n    });\n  }\n};\n\n//# sourceURL=webpack:///./src/Cookies.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isCookiesAllowed", function() { return isCookiesAllowed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isMainCitySet", function() { return isMainCitySet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setMainCity", function() { return setMainCity; });
+var Cookies = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/src/js.cookie.js");
+
+var isCookiesAllowed = function isCookiesAllowed() {
+  if (Boolean(Cookies.get('isAllowed'))) {
+    return;
+  } else {
+    //w tej części tworzę elementy z powiadomieniem o używaniu cookies
+    var element = document.createElement('div');
+    element.setAttribute('class', 'cookie-confirmation');
+    document.querySelector('.wrap').appendChild(element);
+    var textInfo = document.createElement('p');
+    textInfo.innerText = 'Musisz akceptować cookies';
+    element.appendChild(textInfo);
+    var button = document.createElement('button');
+    button.setAttribute('id', 'cookiesAllowed');
+    button.innerText = 'Zgadzam się';
+    element.appendChild(button);
+    button.addEventListener('click', function (e) {
+      Cookies.set('isAllowed', true, {
+        expires: 365
+      });
+      document.querySelector('.wrap').removeChild(element);
+    });
+  }
+}; //funkcja bierze 3 callbacki, setWeather to funkcja, która ma nam pobrać aktualną pogodę z podanego miasta lub szerokości geo
+// curLoc to funkcja do pobierania geolokacji jeśli nie mamy ustawionego domyślnego miasta
+// curLocCallback to funkcja callback dla curLoc
+
+var isMainCitySet = function isMainCitySet(setWeather, curLoc, curLocCallback) {
+  //Cookies.set('isMainCity', 'Warszawa', {expires:7});
+  //console.log(Cookies.get('isMainCity'));
+  if (Boolean(Cookies.get('isMainCity'))) {
+    var input = "city=".concat(Cookies.get('isMainCity'));
+    console.log(input);
+    setWeather(input);
+    return;
+  } else {
+    curLoc(curLocCallback);
+  }
+};
+var setMainCity = function setMainCity(displayedCity) {
+  var bttn = document.querySelector('#defCityButt'); //usuwa ew. przycisk z poprzedniego wyszukania
+
+  if (bttn) {
+    document.querySelector('.search').removeChild(bttn);
+  } //po wyszukaniu sprawdza czy miasto wyszukane jest ustawione jako domyślne, jesli tak to return
+
+
+  console.log(Cookies.get('isMainCity'));
+
+  if (Cookies.get('isMainCity') == displayedCity) {
+    return; //jeśli nie ma domyślnego miasta lub jest to inne miasto to daje opcję ustawienia ciastka z miastem domyslnym
+  } else {
+    var setDefaultCityButton = document.createElement('button');
+    setDefaultCityButton.innerText = 'Ustaw jako miasto domyślne';
+    setDefaultCityButton.setAttribute('id', 'defCityButt');
+    document.querySelector('.search').appendChild(setDefaultCityButton);
+    setDefaultCityButton.addEventListener('click', function (e) {
+      Cookies.set('isMainCity', displayedCity, {
+        expires: 365
+      }); //od razu usuwam przycisk bo po co pokazywać jak miasto domyślne?
+
+      document.querySelector('.search').removeChild(setDefaultCityButton);
+    });
+  }
+};
 
 /***/ }),
 
@@ -6190,11 +6428,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/web.dom.iterable */ "./node_modules/core-js/modules/web.dom.iterable.js");
 /* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _weatherResponse__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./weatherResponse */ "./src/weatherResponse.js");
-/* harmony import */ var _NextWeather__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./NextWeather */ "./src/NextWeather.js");
-/* harmony import */ var _currentLocal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./currentLocal */ "./src/currentLocal.js");
-/* harmony import */ var _speechSynthesis__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./speechSynthesis */ "./src/speechSynthesis.js");
-/* harmony import */ var _volumeRecognition__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./volumeRecognition */ "./src/volumeRecognition.js");
-/* harmony import */ var _cityBrowser__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./cityBrowser */ "./src/cityBrowser.js");
+/* harmony import */ var _cityBrowser__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./cityBrowser */ "./src/cityBrowser.js");
+/* harmony import */ var _NextWeather__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./NextWeather */ "./src/NextWeather.js");
+/* harmony import */ var _currentLocal__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./currentLocal */ "./src/currentLocal.js");
+/* harmony import */ var _speechSynthesis__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./speechSynthesis */ "./src/speechSynthesis.js");
+/* harmony import */ var _volumeRecognition__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./volumeRecognition */ "./src/volumeRecognition.js");
+/* harmony import */ var _Cookies__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Cookies */ "./src/Cookies.js");
 
 
 
@@ -6219,6 +6458,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 
+
+Object(_Cookies__WEBPACK_IMPORTED_MODULE_13__["isCookiesAllowed"])();
 var searchIco = document.getElementById('ico');
 var microIco = document.getElementById('microIco');
 var searchInput = document.querySelector('.prompt');
@@ -6242,7 +6483,7 @@ var showPosition = function showPosition(position) {
 var completeNextHours = function completeNextHours(weat) {
   var wHour = 0;
   weat.forEach(function (hour) {
-    var nextHour = new _NextWeather__WEBPACK_IMPORTED_MODULE_8__["NextHoursWeather"](hour);
+    var nextHour = new _NextWeather__WEBPACK_IMPORTED_MODULE_9__["NextHoursWeather"](hour);
     nextHourSections[wHour].children[0].textContent = nextHour.time;
     nextHourSections[wHour].children[1].textContent = "".concat(nextHour.temp, "\xB0C");
     nextHourSections[wHour].children[2].innerHTML = nextHour.ico;
@@ -6253,7 +6494,7 @@ var completeNextHours = function completeNextHours(weat) {
 var completeNextDays = function completeNextDays(weat) {
   var wDay = 0;
   weat.forEach(function (day) {
-    var nextDay = new _NextWeather__WEBPACK_IMPORTED_MODULE_8__["NextDaysWeather"](day);
+    var nextDay = new _NextWeather__WEBPACK_IMPORTED_MODULE_9__["NextDaysWeather"](day);
     nextDaySections[wDay].children[0].textContent = nextDay.date;
     nextDaySections[wDay].children[1].innerHTML = nextDay.ico;
     nextDaySections[wDay].children[2].firstElementChild.textContent = "".concat(nextDay.tempDay, "\xB0C");
@@ -6296,29 +6537,33 @@ var setWeatherData = function setWeatherData(place) {
     weToday(res);
     showCity(res);
     sunRiseAndSunSet(res);
+    console.log(res.city_name);
+    Object(_Cookies__WEBPACK_IMPORTED_MODULE_13__["setMainCity"])(res.city_name);
+  }).catch(function (res) {
+    alert('Nie znaleziono szukanego miasta.');
+    console.log(res);
   });
   Object(_weatherResponse__WEBPACK_IMPORTED_MODULE_7__["hourWeather"])(place).then(function (res) {
-    console.log(res);
     completeNextHours(res);
-  });
+  }).catch(function (res) {});
   Object(_weatherResponse__WEBPACK_IMPORTED_MODULE_7__["daysWeather"])(place).then(function (res) {
     //console.log(res);
     completeNextDays(res);
-  });
+  }).catch(function (res) {});
 };
 
 searchIco.addEventListener('click', showWeather);
 searchForm.addEventListener('submit', showWeatherEnter);
-volumeIco.addEventListener('click', _speechSynthesis__WEBPACK_IMPORTED_MODULE_10__["speakPolish"]);
+volumeIco.addEventListener('click', _speechSynthesis__WEBPACK_IMPORTED_MODULE_11__["speakPolish"]);
 window.addEventListener('keypress', function (ev) {
   if (ev.keyCode == '0' || ev.keyCode == '17') {
     ev.preventDefault();
-    Object(_speechSynthesis__WEBPACK_IMPORTED_MODULE_10__["speakPolish"])();
+    Object(_speechSynthesis__WEBPACK_IMPORTED_MODULE_11__["speakPolish"])();
   }
 });
-microIco.addEventListener('click', _volumeRecognition__WEBPACK_IMPORTED_MODULE_11__["startRecognate"]);
-searchInput.addEventListener('input', _cityBrowser__WEBPACK_IMPORTED_MODULE_12__["findMatches"]);
-window.onload = Object(_currentLocal__WEBPACK_IMPORTED_MODULE_9__["curLoc"])(showPosition); // const weather = new Weather();
+microIco.addEventListener('click', _volumeRecognition__WEBPACK_IMPORTED_MODULE_12__["startRecognate"]);
+searchInput.addEventListener('input', _cityBrowser__WEBPACK_IMPORTED_MODULE_8__["findMatches"]);
+window.onload = Object(_Cookies__WEBPACK_IMPORTED_MODULE_13__["isMainCitySet"])(setWeatherData, _currentLocal__WEBPACK_IMPORTED_MODULE_10__["curLoc"], showPosition); // const weather = new Weather();
 // console.log(weather.getCityWeather('Moscow'));
 
 
@@ -6423,12 +6668,6 @@ function searchLi() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "curLoc", function() { return curLoc; });
-var showPosition = function showPosition(position) {
-  var latitude = position.coords.latitude;
-  var longitude = position.coords.longitude;
-  console.log("".concat(latitude, " || ").concat(longitude));
-};
-
 var showError = function showError(error) {
   switch (error.code) {
     case error.PERMISSION_DENIED:
