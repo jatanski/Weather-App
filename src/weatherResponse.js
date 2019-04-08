@@ -1,5 +1,4 @@
-
-const apiKey = '4c35b4e8b88542c58826712e428d23ff';
+const apiKey = '414ab9a5d20043a8a7055ff0b31dbbaf';
 
 export const curWeather = async (param) => {
     const url = `https://api.weatherbit.io/v2.0/current?${param}&key=${apiKey}&lang=pl`;

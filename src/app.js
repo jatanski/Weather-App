@@ -9,7 +9,16 @@ import {
     NextDaysWeather
 } from './NextWeather'
 
-import{curLoc} from './currentLocal';
+import {
+    curLoc
+} from './currentLocal';
+import {
+    speakPolish,
+    speakEnglish
+} from './speechSynthesis';
+import {
+    startRecognate
+} from './volumeRecognition';
 
 import {
     isCookiesAllowed,
@@ -19,14 +28,16 @@ import {
 isCookiesAllowed()
 
 const searchIco = document.getElementById('ico')
-const searchInput = document.querySelector('.prompt');
+const microIco = document.getElementById('microIco');
+export const searchInput = document.querySelector('.prompt');
 const searchForm = document.querySelector('.look')
-const city = document.getElementById('city');
-const tempNow = document.querySelector('.temp-now');
-const weatherIcoNow = document.querySelector('.weather-ico-now')
+export const city = document.getElementById('city');
+export const tempNow = document.querySelector('.temp-now');
+export const weatherIcoNow = document.querySelector('.weather-ico-now')
 const nextHourSections = [...document.querySelectorAll('.next-hour')]
-const nextDaySections = [...document.querySelectorAll('.next-day')]
+export const nextDaySections = [...document.querySelectorAll('.next-day')]
 const sunTime = document.querySelector('.sun-time')
+const searchUl = document.querySelector('.suggestions')
 
 const showPosition = (position) => {
     let latitude = position.coords.latitude;
@@ -49,7 +60,7 @@ const completeNextHours = (weat) => {
 
 const completeNextDays = (weat) => {
     let wDay = 0;
-    weat.forEach(day =>{
+    weat.forEach(day => {
         const nextDay = new NextDaysWeather(day);
         nextDaySections[wDay].children[0].textContent = nextDay.date;
         nextDaySections[wDay].children[1].innerHTML = nextDay.ico;
@@ -69,9 +80,12 @@ const sunRiseAndSunSet = (weat) => {
     sunTime.innerHTML = ` <p>${rise} <br> ${set}</p>`
 }
 
-const showWeather = () => {
-    setWeatherData(`city=${searchInput.value}`);
+const showWeather = (city) => {
+    if (typeof city == String) setWeatherData(`city=${city}`)
+    else if (searchInput.value) setWeatherData(`city=${searchInput.value}`)
+    else alert('Najpierw wprowadź miejscowość.')
     searchInput.value = '';
+    searchUl.innerHTML = '';
 }
 
 const showWeatherEnter = (e) => {
@@ -114,7 +128,20 @@ const setWeatherData = (place) => {
 
 searchIco.addEventListener('click', showWeather);
 searchForm.addEventListener('submit', showWeatherEnter);
+volumeIco.addEventListener('click', speakPolish);
+window.addEventListener('keypress', (ev) => {
+    if (ev.keyCode == '0' || ev.keyCode == '17') {
+        ev.preventDefault();
+        speakPolish();
+    }
+});
+microIco.addEventListener('click', startRecognate);
+searchInput.addEventListener('input', findMatches)
 
 window.onload = isMainCitySet(setWeatherData, curLoc, showPosition);
 // const weather = new Weather();
 // console.log(weather.getCityWeather('Moscow'));
+
+export {
+    showWeather
+}
