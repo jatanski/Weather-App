@@ -15,11 +15,16 @@ import {
 } from './app'
 
 const searchUl = document.querySelector('.suggestions')
+const searchBox = document.querySelector('.prompt')
 const lub = document.getElementsByClassName('li-element')
 
 export let liList = []
 
 export const findMatches = (e) => {
+
+    if(e.target.value.length < 3) // Don't search for short strings
+        return;
+
     const searchText = e.target.value.toLowerCase()
 
     let cities = cityList.slice()
@@ -34,7 +39,10 @@ export const findMatches = (e) => {
         <span class="name">${el[0]}, ${el[1]}</span>`
     }).join('');
 
+    searchBox.style.marginTop = Math.min(400, 60 * cities.length) + 'px';
     searchUl.innerHTML = html
+
+    // console.log(searchBox.style.marginTop)
 
     liList = [...lub]
     liList.forEach(el => el.addEventListener('click', searchLi))
@@ -42,4 +50,5 @@ export const findMatches = (e) => {
 
 export function searchLi(e) {
     showWeather(e.target.innerText)
+    searchBox.style.marginTop = 0;
 }

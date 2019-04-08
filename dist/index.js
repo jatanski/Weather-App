@@ -6636,9 +6636,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 var searchUl = document.querySelector('.suggestions');
+var searchBox = document.querySelector('.prompt');
 var lub = document.getElementsByClassName('li-element');
 var liList = [];
 var findMatches = function findMatches(e) {
+  if (e.target.value.length < 3) // Don't search for short strings
+    return;
   var searchText = e.target.value.toLowerCase();
   var cities = _db_world_cities_json_json__WEBPACK_IMPORTED_MODULE_10__.slice();
   cities = cities.map(function (city) {
@@ -6650,7 +6653,9 @@ var findMatches = function findMatches(e) {
   var html = cities.map(function (el) {
     return "<li class=\"li-element\">\n        <span class=\"name\">".concat(el[0], ", ").concat(el[1], "</span>");
   }).join('');
-  searchUl.innerHTML = html;
+  searchBox.style.marginTop = Math.min(400, 60 * cities.length) + 'px';
+  searchUl.innerHTML = html; // console.log(searchBox.style.marginTop)
+
   liList = _toConsumableArray(lub);
   liList.forEach(function (el) {
     return el.addEventListener('click', searchLi);
@@ -6658,6 +6663,7 @@ var findMatches = function findMatches(e) {
 };
 function searchLi(e) {
   Object(_app__WEBPACK_IMPORTED_MODULE_11__["showWeather"])(e.target.innerText);
+  searchBox.style.marginTop = 0;
 }
 
 /***/ }),

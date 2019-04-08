@@ -31,12 +31,6 @@
     border-radius: var(--radius);
 }
 
-.suggestions {
-    position: relative;
-    max-height: 400px;
-    overflow: auto;
-}
-
 .today {
     min-width: 380px;
     position: relative;
