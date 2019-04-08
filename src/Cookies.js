@@ -1,6 +1,6 @@
 const Cookies = require('js-cookie');
 
-const isCookiesAllowed = () => {
+export const isCookiesAllowed = () => {
     if (Boolean(Cookies.get('isAllowed'))) {
         return;
     } else {
@@ -45,13 +45,25 @@ export const isMainCitySet = (setWeather, curLoc, curLocCallback) => {
     }
 }
 
-export const testCookie = () => {
-    isCookiesAllowed();
-    if (Cookies.get('city')) {
-        //console.log(Cookies.get('city'));
+export const setMainCity = (displayedCity) => {
+    //document.querySelector('.search').removeChild(document.querySelector('#defCityButt')) //usuwa ew. przycisk z poprzedniego wyszukania
+    //po wyszukaniu sprawdza czy miasto wyszukane jest ustawione jako domyślne, jesli tak to return
+    console.log(Cookies.get('isMainCity'));
+    if (Cookies.get('isMainCity') == displayedCity) {
+        return;
+    //jeśli nie ma domyślnego miasta lub jest to inne miasto to daje opcję ustawienia ciastka z miastem domyslnym
     } else {
-        Cookies.set('city', 'Wroclaw', {
-            expires: 7
-        });
+        const setDefaultCityButton = document.createElement('button');
+        setDefaultCityButton.innerText = 'Ustaw jako miasto domyślne';
+        setDefaultCityButton.setAttribute('id','defCityButt')
+        document.querySelector('.search').appendChild(setDefaultCityButton);
+
+        setDefaultCityButton.addEventListener('click', e => {
+            Cookies.set('isMainCity', displayedCity);
+            //od razu usuwam przycisk bo po co pokazywać jak miasto domyślne?
+            document.querySelector('.search').removeChild(setDefaultCityButton);
+        })
+
+
     }
-};
+}

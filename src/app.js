@@ -12,10 +12,11 @@ import {
 import{curLoc} from './currentLocal';
 
 import {
-    testCookie,
-    isMainCitySet
+    isCookiesAllowed,
+    isMainCitySet,
+    setMainCity
 } from './Cookies';
-testCookie()
+isCookiesAllowed()
 
 const searchIco = document.getElementById('ico')
 const searchInput = document.querySelector('.prompt');
@@ -91,11 +92,15 @@ const setWeatherData = (place) => {
             weToday(res);
             showCity(res);
             sunRiseAndSunSet(res);
+            console.log(res.city_name);
+            setMainCity(res.city_name);
         })
-        .catch(res => alert('Nie znaleziono szukanego miasta.'));
+        .catch(res => {
+            alert('Nie znaleziono szukanego miasta.');
+            console.log(res);
+        });
     hourWeather(place)
         .then(res => {
-            console.log(res);
             completeNextHours(res)
         })
         .catch(res => {});
