@@ -1,7 +1,8 @@
 import {
     curWeather,
     hourWeather,
-    daysWeather
+    daysWeather,
+    pollutionWeather
 } from './weatherResponse';
 
 import {
@@ -43,6 +44,7 @@ const nextHourSections = [...document.querySelectorAll('.next-hour')]
 export const nextDaySections = [...document.querySelectorAll('.next-day')]
 const sunTime = document.querySelector('.sun-time')
 const searchUl = document.querySelector('.suggestions')
+const pollutionSection = document.querySelector('.pollution')
 
 const showPosition = (position) => {
     let latitude = position.coords.latitude;
@@ -83,15 +85,37 @@ const sunRiseAndSunSet = (weat) => {
     const sunR = new Date(`2018-04-03T${weat.sunrise}:00`);
     const sunS = new Date(`2018-04-03T${weat.sunset}:00`)
     const rise = `${date.addHours(sunR, 2)}`.toString().slice(16, 21);
-    const set = `${date.addHours(sunS, 2)}`.toString().slice(16,21);
+    const set = `${date.addHours(sunS, 2)}`.toString().slice(16, 21);
     sunTime.innerHTML = ` <p>${rise} <br> ${set}</p>`
+}
+
+const showPollution = (weat) => {
+    let airQuality = ''
+    if (weat.mainus == "p1") {
+        airQuality = "Dobra"
+    } else if (weat.mainus == "p2") {
+        airQuality = "Umiarkowana"
+        console.log(airQuality)
+    } else if (weat.mainus == "p3") {
+        airQuality = "Dostateczna"
+    } else if (weat.mainus == "p4") {
+        airQuality = "Zła"
+    } else if (weat.mainus == "p5") {
+        airQuality = "Bardzo zła"
+    } else if (weat.mainus == "p6") {
+        airQuality = "Niebezpieczna dla życia"
+    } else {
+        airQuality = "Brak danych"
+    }
+
+    console.log(airQuality)
+    pollutionSection.innerText = `Jakość powietrza jest: ${airQuality}`
 }
 
 const showWeather = (city) => {
     if (typeof city == "string") {
         setWeatherData(`city=${city}`);
-    }
-    else if (searchInput.value) setWeatherData(`city=${searchInput.value}`)
+    } else if (searchInput.value) setWeatherData(`city=${searchInput.value}`)
     else alert('Najpierw wprowadź miejscowość.')
     searchInput.value = '';
     searchUl.innerHTML = '';
@@ -110,6 +134,9 @@ const weToday = (weat) => { //Aktualizuje aktualną temperaturę
 }
 
 const setWeatherData = (place) => {
+    let latitude = 0
+    let longitude = 0
+
     curWeather(place)
         .then(res => { //tutaj wszystkie funkcje/operacje dodające dane z API pogodowego do DOM
             weToday(res);
@@ -131,6 +158,11 @@ const setWeatherData = (place) => {
         .then(res => {
             //console.log(res);
             completeNextDays(res);
+        })
+        .catch(res => {});
+    pollutionWeather(latitude, longitude)
+        .then(res => {
+            showPollution(res)
         })
         .catch(res => {});
 }
