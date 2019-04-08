@@ -9,9 +9,16 @@ import {
     NextDaysWeather
 } from './NextWeather'
 
-import{curLoc} from './currentLocal';
-import { speakPolish, speakEnglish } from './speechSynthesis';
-import { startRecognate } from './volumeRecognition';
+import {
+    curLoc
+} from './currentLocal';
+import {
+    speakPolish,
+    speakEnglish
+} from './speechSynthesis';
+import {
+    startRecognate
+} from './volumeRecognition';
 
 import {
     findMatches,
@@ -70,8 +77,9 @@ const sunRiseAndSunSet = (weat) => {
     sunTime.innerHTML = ` <p>${rise} <br> ${set}</p>`
 }
 
-const showWeather = (city = searchInput.value) => {
-    setWeatherData(`city=${city}`);
+const showWeather = (city) => {
+    if (typeof city == String) setWeatherData(`city=${city}`)
+    else setWeatherData(`city=${searchInput.value}`)
     searchInput.value = '';
     searchUl.innerHTML = '';
 }
@@ -110,8 +118,8 @@ const setWeatherData = (place) => {
 searchIco.addEventListener('click', showWeather);
 searchForm.addEventListener('submit', showWeatherEnter);
 volumeIco.addEventListener('click', speakPolish);
-window.addEventListener('keypress', (ev)=> {
-    if(ev.keyCode == '0' || ev.keyCode == '32'){
+window.addEventListener('keypress', (ev) => {
+    if (ev.keyCode == '0' || ev.keyCode == '32') {
         ev.preventDefault();
         speakPolish();
     }

@@ -9,7 +9,7 @@
 //     console.log(cityList)
 // }
 
-import cityList from '../db/city.list.json'
+import cityList from '../db/world-cities_json.json'
 import {
     showWeather
 } from './app'
