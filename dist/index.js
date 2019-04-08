@@ -6642,13 +6642,13 @@ var findMatches = function findMatches(e) {
   var searchText = e.target.value.toLowerCase();
   var cities = _db_world_cities_json_json__WEBPACK_IMPORTED_MODULE_10__.slice();
   cities = cities.map(function (city) {
-    return city.name.toLowerCase();
+    return [city.name.toLowerCase(), city.country];
   });
   cities = cities.filter(function (city) {
-    return city.includes(searchText);
+    return city[0].includes(searchText);
   });
   var html = cities.map(function (el) {
-    return "<li class=\"li-element\">\n        <span class=\"name\">".concat(el, "</span>");
+    return "<li class=\"li-element\">\n        <span class=\"name\">".concat(el[0], ", ").concat(el[1], "</span>");
   }).join('');
   searchUl.innerHTML = html;
   liList = _toConsumableArray(lub);

@@ -24,14 +24,14 @@ export const findMatches = (e) => {
 
     let cities = cityList.slice()
     cities = cities.map(city => {
-        return city.name.toLowerCase();
+        return [city.name.toLowerCase(), city.country]
     })
     cities = cities.filter(city => {
-        return city.includes(searchText)
+        return city[0].includes(searchText)
     })
     const html = cities.map(el => {
         return `<li class="li-element">
-        <span class="name">${el}</span>`
+        <span class="name">${el[0]}, ${el[1]}</span>`
     }).join('');
 
     searchUl.innerHTML = html
