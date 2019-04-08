@@ -37,6 +37,6 @@ export const findMatches = (e) => {
     liList.forEach(el => el.addEventListener('click', searchLi))
 }
 
-export function searchLi() {
-    showWeather(this.innerText)
+export function searchLi(e) {
+    showWeather(e.target.innerText)
 }

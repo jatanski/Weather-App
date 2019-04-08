@@ -85,7 +85,9 @@ const sunRiseAndSunSet = (weat) => {
 }
 
 const showWeather = (city) => {
-    if (typeof city == String) setWeatherData(`city=${city}`)
+    if (typeof city == "string") {
+        setWeatherData(`city=${city}`);
+    }
     else if (searchInput.value) setWeatherData(`city=${searchInput.value}`)
     else alert('Najpierw wprowadź miejscowość.')
     searchInput.value = '';
