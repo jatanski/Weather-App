@@ -20,15 +20,18 @@ const lub = document.getElementsByClassName('li-element')
 export let liList = []
 
 export const findMatches = (e) => {
-    const searchText = e.target.value
+    const searchText = e.target.value.toLowerCase()
 
     let cities = cityList.slice()
+    cities = cities.map(city => {
+        return city.name.toLowerCase();
+    })
     cities = cities.filter(city => {
-        return city.name.includes(searchText)
+        return city.includes(searchText)
     })
     const html = cities.map(el => {
         return `<li class="li-element">
-        <span class="name">${el.name}</span>`
+        <span class="name">${el}</span>`
     }).join('');
 
     searchUl.innerHTML = html

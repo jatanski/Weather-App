@@ -6442,8 +6442,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -6514,7 +6512,10 @@ var sunRiseAndSunSet = function sunRiseAndSunSet(weat) {
 };
 
 var showWeather = function showWeather(city) {
-  if (_typeof(city) == String) setWeatherData("city=".concat(city));else if (searchInput.value) setWeatherData("city=".concat(searchInput.value));else alert('Najpierw wprowadź miejscowość.');
+  if (typeof city == "string") {
+    setWeatherData("city=".concat(city));
+  } else if (searchInput.value) setWeatherData("city=".concat(searchInput.value));else alert('Najpierw wprowadź miejscowość.');
+
   searchInput.value = '';
   searchUl.innerHTML = '';
 };
@@ -6596,12 +6597,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es6_symbol__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_symbol__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/web.dom.iterable */ "./node_modules/core-js/modules/web.dom.iterable.js");
 /* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/es6.function.name */ "./node_modules/core-js/modules/es6.function.name.js");
-/* harmony import */ var core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var core_js_modules_es7_array_includes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! core-js/modules/es7.array.includes */ "./node_modules/core-js/modules/es7.array.includes.js");
-/* harmony import */ var core_js_modules_es7_array_includes__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es7_array_includes__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var core_js_modules_es6_string_includes__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! core-js/modules/es6.string.includes */ "./node_modules/core-js/modules/es6.string.includes.js");
-/* harmony import */ var core_js_modules_es6_string_includes__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_string_includes__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var core_js_modules_es7_array_includes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/es7.array.includes */ "./node_modules/core-js/modules/es7.array.includes.js");
+/* harmony import */ var core_js_modules_es7_array_includes__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es7_array_includes__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var core_js_modules_es6_string_includes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! core-js/modules/es6.string.includes */ "./node_modules/core-js/modules/es6.string.includes.js");
+/* harmony import */ var core_js_modules_es6_string_includes__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_string_includes__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! core-js/modules/es6.function.name */ "./node_modules/core-js/modules/es6.function.name.js");
+/* harmony import */ var core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var _db_world_cities_json_json__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../db/world-cities_json.json */ "./db/world-cities_json.json");
 var _db_world_cities_json_json__WEBPACK_IMPORTED_MODULE_10___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../db/world-cities_json.json */ "./db/world-cities_json.json", 1);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./app */ "./src/app.js");
@@ -6638,13 +6639,16 @@ var searchUl = document.querySelector('.suggestions');
 var lub = document.getElementsByClassName('li-element');
 var liList = [];
 var findMatches = function findMatches(e) {
-  var searchText = e.target.value;
+  var searchText = e.target.value.toLowerCase();
   var cities = _db_world_cities_json_json__WEBPACK_IMPORTED_MODULE_10__.slice();
+  cities = cities.map(function (city) {
+    return city.name.toLowerCase();
+  });
   cities = cities.filter(function (city) {
-    return city.name.includes(searchText);
+    return city.includes(searchText);
   });
   var html = cities.map(function (el) {
-    return "<li class=\"li-element\">\n        <span class=\"name\">".concat(el.name, "</span>");
+    return "<li class=\"li-element\">\n        <span class=\"name\">".concat(el, "</span>");
   }).join('');
   searchUl.innerHTML = html;
   liList = _toConsumableArray(lub);
@@ -6652,8 +6656,8 @@ var findMatches = function findMatches(e) {
     return el.addEventListener('click', searchLi);
   });
 };
-function searchLi() {
-  Object(_app__WEBPACK_IMPORTED_MODULE_11__["showWeather"])(this.innerText);
+function searchLi(e) {
+  Object(_app__WEBPACK_IMPORTED_MODULE_11__["showWeather"])(e.target.innerText);
 }
 
 /***/ }),
