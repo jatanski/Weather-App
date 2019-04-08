@@ -39,3 +39,12 @@
     background-color: var(--section);
     border-radius: var(--radius);
 }
+
+.cookie-confirmation {
+    background-color: green;
+    width: 200px;
+    height:100px;
+    position: absolute;
+    margin: 0 auto;
+    z-index: 10;
+}

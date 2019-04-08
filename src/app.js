@@ -11,6 +11,11 @@ import {
 
 import{curLoc} from './currentLocal';
 
+import {
+    testCookie,
+    isMainCitySet
+} from './Cookies';
+testCookie()
 
 const searchIco = document.getElementById('ico')
 const searchInput = document.querySelector('.prompt');
@@ -87,21 +92,24 @@ const setWeatherData = (place) => {
             showCity(res);
             sunRiseAndSunSet(res);
         })
+        .catch(res => alert('Nie znaleziono szukanego miasta.'));
     hourWeather(place)
         .then(res => {
             console.log(res);
             completeNextHours(res)
         })
+        .catch(res => {});
     daysWeather(place)
         .then(res => {
             //console.log(res);
             completeNextDays(res);
         })
+        .catch(res => {});
 }
 
 searchIco.addEventListener('click', showWeather);
 searchForm.addEventListener('submit', showWeatherEnter);
 
-window.onload = curLoc(showPosition);
+window.onload = isMainCitySet(setWeatherData, curLoc, showPosition);
 // const weather = new Weather();
 // console.log(weather.getCityWeather('Moscow'));
