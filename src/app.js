@@ -31,6 +31,7 @@ import {
 } from './Cookies';
 isCookiesAllowed()
 
+const date = require('date-and-time');
 const searchIco = document.getElementById('ico')
 const microIco = document.getElementById('microIco');
 export const searchInput = document.querySelector('.prompt');
@@ -79,8 +80,10 @@ const showCity = (weat) => {
 }
 
 const sunRiseAndSunSet = (weat) => {
-    const rise = weat.sunrise
-    const set = weat.sunset
+    const sunR = new Date(`2018-04-03T${weat.sunrise}:00`);
+    const sunS = new Date(`2018-04-03T${weat.sunset}:00`)
+    const rise = `${date.addHours(sunR, 2)}`.toString().slice(16, 21);
+    const set = `${date.addHours(sunS, 2)}`.toString().slice(16,21);
     sunTime.innerHTML = ` <p>${rise} <br> ${set}</p>`
 }
 
