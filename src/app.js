@@ -79,7 +79,8 @@ const sunRiseAndSunSet = (weat) => {
 
 const showWeather = (city) => {
     if (typeof city == String) setWeatherData(`city=${city}`)
-    else setWeatherData(`city=${searchInput.value}`)
+    else if (searchInput.value) setWeatherData(`city=${searchInput.value}`)
+    else alert('Najpierw wprowadź miejscowość.')
     searchInput.value = '';
     searchUl.innerHTML = '';
 }
@@ -119,7 +120,7 @@ searchIco.addEventListener('click', showWeather);
 searchForm.addEventListener('submit', showWeatherEnter);
 volumeIco.addEventListener('click', speakPolish);
 window.addEventListener('keypress', (ev) => {
-    if (ev.keyCode == '0' || ev.keyCode == '32') {
+    if (ev.keyCode == '0' || ev.keyCode == '17') {
         ev.preventDefault();
         speakPolish();
     }

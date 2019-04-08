@@ -6250,7 +6250,7 @@ var sunRiseAndSunSet = function sunRiseAndSunSet(weat) {
 };
 
 var showWeather = function showWeather(city) {
-  if (_typeof(city) == String) setWeatherData("city=".concat(city));else setWeatherData("city=".concat(searchInput.value));
+  if (_typeof(city) == String) setWeatherData("city=".concat(city));else if (searchInput.value) setWeatherData("city=".concat(searchInput.value));else alert('Najpierw wprowadź miejscowość.');
   searchInput.value = '';
   searchUl.innerHTML = '';
 };
@@ -6288,7 +6288,7 @@ searchIco.addEventListener('click', showWeather);
 searchForm.addEventListener('submit', showWeatherEnter);
 volumeIco.addEventListener('click', _speechSynthesis__WEBPACK_IMPORTED_MODULE_10__["speakPolish"]);
 window.addEventListener('keypress', function (ev) {
-  if (ev.keyCode == '0' || ev.keyCode == '32') {
+  if (ev.keyCode == '0' || ev.keyCode == '17') {
     ev.preventDefault();
     Object(_speechSynthesis__WEBPACK_IMPORTED_MODULE_10__["speakPolish"])();
   }
@@ -6526,6 +6526,7 @@ function startRecognate() {
       }
 
       _app__WEBPACK_IMPORTED_MODULE_0__["searchInput"].value = interimTranscripts;
+      Object(_app__WEBPACK_IMPORTED_MODULE_0__["showWeather"])();
     };
 
     speechRecognizer.onerror = function (event) {

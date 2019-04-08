@@ -1,4 +1,8 @@
-import { searchInput } from './app';
+import {
+    searchInput,
+    showWeather
+}
+from './app';
 
 function startRecognate() {
     if ('webkitSpeechRecognition' in window) {
@@ -6,14 +10,15 @@ function startRecognate() {
         speechRecognizer.interimResults = true;
         speechRecognizer.lang = 'pl-PL';
         speechRecognizer.start();
-       
+
         speechRecognizer.onresult = function (event) {
             var interimTranscripts = '';
             for (var i = event.resultIndex; i < event.results.length; i++) {
                 var transcript = event.results[i][0].transcript;
-                    interimTranscripts += transcript;
+                interimTranscripts += transcript;
             }
             searchInput.value = interimTranscripts;
+            showWeather()
         };
         speechRecognizer.onerror = function (event) {
             alert('Wystąpił błąd, prosimy spróbować ponownie.');
@@ -23,4 +28,6 @@ function startRecognate() {
     }
 }
 
-export {startRecognate}
+export {
+    startRecognate
+}
