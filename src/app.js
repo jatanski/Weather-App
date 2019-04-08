@@ -5,6 +5,10 @@ import {
 } from './weatherResponse';
 
 import {
+    findMatches,
+} from './cityBrowser'
+
+import {
     NextHoursWeather,
     NextDaysWeather
 } from './NextWeather'
