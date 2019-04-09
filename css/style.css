@@ -6,7 +6,7 @@
 }
 
 :root {
-    --radius: 5px;
+    --radius: 10px;
     --section: rgba(50, 50, 50, 1);
     --fontcolor: #eee;
 }
@@ -17,12 +17,12 @@
     grid-template: 80px / repeat(2, 1fr);
     grid-gap: 3vh 3vw;
     padding: 5vh;
-    background-image: url(../img/background.jpg);
-    background-size: cover;
+background: linear-gradient(135deg, rgba(208, 228, 247, 1) 0%, rgba(115, 177, 231, 1) 24%, rgba(10, 119, 213, 1) 50%, rgba(83, 159, 225, 1) 79%, rgba(135, 188, 234, 1) 100%);
 }
 
 .wrap > * {
     border: 3px solid black;
+    box-shadow: 6px 6px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 .search {
@@ -34,13 +34,17 @@
 .today {
     min-width: 380px;
     position: relative;
+    padding: 20px;
     grid-area: 1 / 2 / 3 / 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     background-color: var(--section);
     border-radius: var(--radius);
 }
 
 .next-days {
-    min-width: 380px;
+    min-width: 450px;
     grid-area: 2 / 1 / 3 / 2;
     background-color: var(--section);
     border-radius: var(--radius);
@@ -51,6 +55,56 @@
     width: 70%;
     height: 100px;
     position: fixed;
-    margin: auto;
-    bottom: 50px;
+    top: 85%;
+    left: 15%;
+
+    text-align: center;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    display: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #888;
+}
+
+@media screen and (max-width: 640px) {
+    
+    html {
+        background: linear-gradient(135deg, rgba(208, 228, 247, 1) 0%, rgba(115, 177, 231, 1) 24%, rgba(10, 119, 213, 1) 50%, rgba(83, 159, 225, 1) 79%, rgba(135, 188, 234, 1) 100%);
+    }
+
+    .wrap {
+        display: initial;
+        padding: 10px;
+        background: none;
+    }
+
+    .search {
+        margin: 5px;
+    }
+
+    .next-days {
+        padding-left: 10px;
+        padding-right: 60px;
+        margin: 5px;
+    }
+
+    .today {
+        margin: 5px;
+    }
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
 }

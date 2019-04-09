@@ -8,7 +8,7 @@ export const curWeather = async (param) => {
 }
 
 export const hourWeather = async (param) => {
-    const url = `https://api.weatherbit.io/v2.0/forecast/hourly?${param}&key=${apiKey}&hours=5&lang=pl`;
+    const url = `https://api.weatherbit.io/v2.0/forecast/hourly?${param}&key=${apiKey}&hours=8&lang=pl`;
     const fetching = await fetch(url);
     const weatherHourArray = await fetching.json();
     return weatherHourArray.data;

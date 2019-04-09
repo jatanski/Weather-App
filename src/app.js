@@ -56,8 +56,8 @@ const showPosition = (position) => {
 
 const completeNextHours = (weat) => {
     let wHour = 0;
-
     weat.forEach(hour => {
+        console.log(hour);
         const nextHour = new NextHoursWeather(hour);
         nextHourSections[wHour].children[0].textContent = nextHour.time;
         nextHourSections[wHour].children[1].textContent = `${nextHour.temp}°C`;
@@ -114,6 +114,7 @@ const showPollution = (weat) => {
 }
 
 const showWeather = (city) => {
+    searchBar.style.marginTop = 0;
     if (typeof city == "string") {
         setWeatherData(`city=${city}`);
     } else if (searchInput.value) setWeatherData(`city=${searchInput.value}`)
@@ -123,7 +124,6 @@ const showWeather = (city) => {
 }
 
 const showWeatherEnter = (e) => {
-    searchBar.style.marginTop = 0;
     e.preventDefault();
     showWeather()
 }

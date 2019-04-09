@@ -1,6 +1,7 @@
 .next-days {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: space-between;
     flex-wrap: wrap;
     color: var(--fontcolor)
 }
@@ -33,4 +34,26 @@
 
 .next-day .temp .night {
     color: #587cdf;
+}
+
+@media screen and (max-width: 640px) {
+    .next-days {
+        height: 220px;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow: auto;
+    }
+
+    .next-day .date {
+        font-size: 1.5em;
+        flex-basis: 0;
+    }
+
+    .next-day img {
+        width: 65%;
+    }
+
+    .next-day .temp {
+        font-size: 2em;
+    }
 }

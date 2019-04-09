@@ -6554,6 +6554,8 @@ var showPollution = function showPollution(weat) {
 };
 
 var showWeather = function showWeather(city) {
+  searchBar.style.marginTop = 0;
+
   if (typeof city == "string") {
     setWeatherData("city=".concat(city));
   } else if (searchInput.value) setWeatherData("city=".concat(searchInput.value));else alert('Najpierw wprowadź miejscowość.');
@@ -6563,7 +6565,6 @@ var showWeather = function showWeather(city) {
 };
 
 var showWeatherEnter = function showWeatherEnter(e) {
-  searchBar.style.marginTop = 0;
   e.preventDefault();
   showWeather();
 };
@@ -6954,7 +6955,7 @@ function () {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            url = "https://api.weatherbit.io/v2.0/forecast/hourly?".concat(param, "&key=").concat(apiKey, "&hours=5&lang=pl");
+            url = "https://api.weatherbit.io/v2.0/forecast/hourly?".concat(param, "&key=").concat(apiKey, "&hours=8&lang=pl");
             _context2.next = 3;
             return fetch(url);
 
