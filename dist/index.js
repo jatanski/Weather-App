@@ -6474,6 +6474,7 @@ var nextHourSections = _toConsumableArray(document.querySelectorAll('.next-hour'
 var nextDaySections = _toConsumableArray(document.querySelectorAll('.next-day'));
 var sunTime = document.querySelector('.sun-time');
 var searchUl = document.querySelector('.suggestions');
+var pollutionSection = document.querySelector('.pollution');
 
 var showPosition = function showPosition(position) {
   var latitude = position.coords.latitude;
@@ -6516,6 +6517,30 @@ var sunRiseAndSunSet = function sunRiseAndSunSet(weat) {
   sunTime.innerHTML = " <p>".concat(rise, " <br> ").concat(set, "</p>");
 };
 
+var showPollution = function showPollution(weat) {
+  var airQuality = '';
+
+  if (weat.mainus == "p1") {
+    airQuality = "Dobra";
+  } else if (weat.mainus == "p2") {
+    airQuality = "Umiarkowana";
+    console.log(airQuality);
+  } else if (weat.mainus == "p3") {
+    airQuality = "Dostateczna";
+  } else if (weat.mainus == "p4") {
+    airQuality = "Zła";
+  } else if (weat.mainus == "p5") {
+    airQuality = "Bardzo zła";
+  } else if (weat.mainus == "p6") {
+    airQuality = "Niebezpieczna dla życia";
+  } else {
+    airQuality = "Brak danych";
+  }
+
+  console.log(airQuality);
+  pollutionSection.innerText = "Jako\u015B\u0107 powietrza jest: ".concat(airQuality);
+};
+
 var showWeather = function showWeather(city) {
   if (typeof city == "string") {
     setWeatherData("city=".concat(city));
@@ -6538,6 +6563,8 @@ var weToday = function weToday(weat) {
 };
 
 var setWeatherData = function setWeatherData(place) {
+  var latitude = 0;
+  var longitude = 0;
   Object(_weatherResponse__WEBPACK_IMPORTED_MODULE_7__["curWeather"])(place).then(function (res) {
     //tutaj wszystkie funkcje/operacje dodające dane z API pogodowego do DOM
     weToday(res);
@@ -6555,6 +6582,9 @@ var setWeatherData = function setWeatherData(place) {
   Object(_weatherResponse__WEBPACK_IMPORTED_MODULE_7__["daysWeather"])(place).then(function (res) {
     //console.log(res);
     completeNextDays(res);
+  }).catch(function (res) {});
+  Object(_weatherResponse__WEBPACK_IMPORTED_MODULE_7__["pollutionWeather"])(latitude, longitude).then(function (res) {
+    showPollution(res);
   }).catch(function (res) {});
 };
 
@@ -6822,7 +6852,7 @@ function startRecognate() {
 /*!********************************!*\
   !*** ./src/weatherResponse.js ***!
   \********************************/
-/*! exports provided: curWeather, hourWeather, daysWeather */
+/*! exports provided: curWeather, hourWeather, daysWeather, pollutionWeather */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6830,6 +6860,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "curWeather", function() { return curWeather; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hourWeather", function() { return hourWeather; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "daysWeather", function() { return daysWeather; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pollutionWeather", function() { return pollutionWeather; });
 /* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es6.promise */ "./node_modules/core-js/modules/es6.promise.js");
 /* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_es6_object_to_string__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es6.object.to-string */ "./node_modules/core-js/modules/es6.object.to-string.js");
@@ -6951,6 +6982,44 @@ function () {
 
   return function daysWeather(_x3) {
     return _ref3.apply(this, arguments);
+  };
+}();
+var pollutionApiKey = 'Ax8icFvXfL3ebLzAb';
+var pollutionWeather =
+/*#__PURE__*/
+function () {
+  var _ref4 = _asyncToGenerator(
+  /*#__PURE__*/
+  regeneratorRuntime.mark(function _callee4(latitude, longitude) {
+    var url, fetching, pollWeather;
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            url = "https://api.airvisual.com/v2/nearest_city?lat=".concat(latitude, "&lon=").concat(longitude, "&key=").concat(pollutionApiKey);
+            _context4.next = 3;
+            return fetch(url);
+
+          case 3:
+            fetching = _context4.sent;
+            _context4.next = 6;
+            return fetching.json();
+
+          case 6:
+            pollWeather = _context4.sent;
+            console.log(pollWeather);
+            return _context4.abrupt("return", pollWeather.data.current.pollution);
+
+          case 9:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4);
+  }));
+
+  return function pollutionWeather(_x4, _x5) {
+    return _ref4.apply(this, arguments);
   };
 }();
 
