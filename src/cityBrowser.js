@@ -24,9 +24,10 @@ export const findMatches = (e) => {
     for (let i = 0; i < polishCityList.length; i++) {
         const el = polishCityList[i].cities
         for (let j = 0; j < el.length; j++) {
-            polishCities.push([el[j].text_simple, "Poland"])
+            polishCities.push([el[j].text_simple.toLowerCase(), "Poland"])
         }
     }
+
     polishCities = polishCities.filter(city => {
         return city[0].includes(searchText)
     })
@@ -40,17 +41,13 @@ export const findMatches = (e) => {
     })
 
     const allCities = polishCities.concat(cities)
-    allCities.push(['Śmigiel', "Poland"])
-    allCities.push(['Krowsko', "Poland"])
-    allCities.push(['Podśmigiel', "Poland"])
-
 
     const html = allCities.map(el => {
         return `<li class="li-element">
         <span class="name">${el[0]}, ${el[1]}</span>`
     }).join('');
 
-    searchBox.style.marginTop = Math.min(400, 60 * cities.length) + 'px';
+    searchBox.style.marginTop = Math.min(400, 60 * allCities.length) + 'px';
     searchUl.innerHTML = html
 
     // console.log(searchBox.style.marginTop)
