@@ -42,6 +42,8 @@ export const findMatches = (e) => {
     const allCities = polishCities.concat(cities)
     allCities.push(['Śmigiel', "Poland"])
     allCities.push(['Krowsko', "Poland"])
+    allCities.push(['Podśmigiel', "Poland"])
+
 
     const html = allCities.map(el => {
         return `<li class="li-element">
