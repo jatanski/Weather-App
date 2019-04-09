@@ -45,6 +45,7 @@ export const nextDaySections = [...document.querySelectorAll('.next-day')]
 const sunTime = document.querySelector('.sun-time')
 const searchUl = document.querySelector('.suggestions')
 const pollutionSection = document.querySelector('.pollution')
+const searchBar = document.querySelector('.prompt')
 
 const showPosition = (position) => {
     let latitude = position.coords.latitude;
@@ -122,6 +123,7 @@ const showWeather = (city) => {
 }
 
 const showWeatherEnter = (e) => {
+    searchBar.style.marginTop = 0;
     e.preventDefault();
     showWeather()
 }
@@ -147,24 +149,30 @@ const setWeatherData = (place) => {
         })
         .catch(res => {
             alert('Nie znaleziono szukanego miasta.');
-            console.log(res);
+            console.log("curWeather: " + res);
         });
     hourWeather(place)
         .then(res => {
             completeNextHours(res)
         })
-        .catch(res => {});
+        .catch(res => {
+            console.log("hourWeather: " + res);
+        });
     daysWeather(place)
         .then(res => {
             //console.log(res);
             completeNextDays(res);
         })
-        .catch(res => {});
+        .catch(res => {
+            console.log("daysWeather: " + res);
+        });
     pollutionWeather(latitude, longitude)
         .then(res => {
             showPollution(res)
         })
-        .catch(res => {});
+        .catch(res => {
+            console.log("pollutionWeather: " + res);
+        });
 }
 
 searchIco.addEventListener('click', showWeather);

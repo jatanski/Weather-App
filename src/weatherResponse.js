@@ -27,6 +27,6 @@ export const pollutionWeather = async (latitude, longitude) => {
     const url = `https://api.airvisual.com/v2/nearest_city?lat=${latitude}&lon=${longitude}&key=${pollutionApiKey}`;
     const fetching = await fetch(url);
     const pollWeather = await fetching.json();
-    console.log(pollWeather)
+    //console.log(pollWeather)
     return pollWeather.data.current.pollution;
 }

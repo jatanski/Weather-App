@@ -6475,6 +6475,7 @@ var nextDaySections = _toConsumableArray(document.querySelectorAll('.next-day'))
 var sunTime = document.querySelector('.sun-time');
 var searchUl = document.querySelector('.suggestions');
 var pollutionSection = document.querySelector('.pollution');
+var searchBar = document.querySelector('.prompt');
 
 var showPosition = function showPosition(position) {
   var latitude = position.coords.latitude;
@@ -6551,6 +6552,7 @@ var showWeather = function showWeather(city) {
 };
 
 var showWeatherEnter = function showWeatherEnter(e) {
+  searchBar.style.marginTop = 0;
   e.preventDefault();
   showWeather();
 };
@@ -6574,18 +6576,24 @@ var setWeatherData = function setWeatherData(place) {
     Object(_Cookies__WEBPACK_IMPORTED_MODULE_13__["setMainCity"])(res.city_name);
   }).catch(function (res) {
     alert('Nie znaleziono szukanego miasta.');
-    console.log(res);
+    console.log("curWeather: " + res);
   });
   Object(_weatherResponse__WEBPACK_IMPORTED_MODULE_7__["hourWeather"])(place).then(function (res) {
     completeNextHours(res);
-  }).catch(function (res) {});
+  }).catch(function (res) {
+    console.log("hourWeather: " + res);
+  });
   Object(_weatherResponse__WEBPACK_IMPORTED_MODULE_7__["daysWeather"])(place).then(function (res) {
     //console.log(res);
     completeNextDays(res);
-  }).catch(function (res) {});
+  }).catch(function (res) {
+    console.log("daysWeather: " + res);
+  });
   Object(_weatherResponse__WEBPACK_IMPORTED_MODULE_7__["pollutionWeather"])(latitude, longitude).then(function (res) {
     showPollution(res);
-  }).catch(function (res) {});
+  }).catch(function (res) {
+    console.log("pollutionWeather: " + res);
+  });
 };
 
 searchIco.addEventListener('click', showWeather);
@@ -6697,6 +6705,7 @@ var findMatches = function findMatches(e) {
   });
 };
 function searchLi(e) {
+  console.log(e.target.innerText);
   Object(_app__WEBPACK_IMPORTED_MODULE_11__["showWeather"])(e.target.innerText);
   searchBox.style.marginTop = 0;
 }
@@ -7007,10 +7016,9 @@ function () {
 
           case 6:
             pollWeather = _context4.sent;
-            console.log(pollWeather);
             return _context4.abrupt("return", pollWeather.data.current.pollution);
 
-          case 9:
+          case 8:
           case "end":
             return _context4.stop();
         }

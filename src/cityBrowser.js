@@ -49,6 +49,7 @@ export const findMatches = (e) => {
 }
 
 export function searchLi(e) {
+    console.log(e.target.innerText);
     showWeather(e.target.innerText)
     searchBox.style.marginTop = 0;
 }
