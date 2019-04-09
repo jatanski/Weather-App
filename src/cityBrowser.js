@@ -1,18 +1,11 @@
-// const url = 'https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json'
+import worldCityList from '../db/world-cities_json.json'
+import polishCityList from '../db/miasta_.json'
 
-// const cities = [];
-
-// export const prom = async () => {
-//     const fetching = await fetch(url)
-//     const cityList = await fetching.json()
-//     // return cityList
-//     console.log(cityList)
-// }
-
-import cityList from '../db/world-cities_json.json'
 import {
     showWeather
 } from './app'
+
+// const polishCity = polishCityList.json()
 
 const searchUl = document.querySelector('.suggestions')
 const searchBox = document.querySelector('.prompt')
@@ -21,20 +14,36 @@ const lub = document.getElementsByClassName('li-element')
 export let liList = []
 
 export const findMatches = (e) => {
-
-    if(e.target.value.length < 3) // Don't search for short strings
+    console.log(polishCityList)
+    if (e.target.value.length < 3) // Don't search for short strings
         return;
 
     const searchText = e.target.value.toLowerCase()
 
-    let cities = cityList.slice()
+    let polishCities = []
+    for (let i = 0; i < polishCityList.length; i++) {
+        const el = polishCityList[i].cities
+        for (let j = 0; j < el.length; j++) {
+            polishCities.push([el[j].text_simple, "Poland"])
+        }
+    }
+    polishCities = polishCities.filter(city => {
+        return city[0].includes(searchText)
+    })
+
+    let cities = worldCityList.slice()
     cities = cities.map(city => {
         return [city.name.toLowerCase(), city.country]
     })
     cities = cities.filter(city => {
         return city[0].includes(searchText)
     })
-    const html = cities.map(el => {
+
+    const allCities = polishCities.concat(cities)
+    allCities.push(['Śmigiel', "Poland"])
+    allCities.push(['Krowsko', "Poland"])
+
+    const html = allCities.map(el => {
         return `<li class="li-element">
         <span class="name">${el[0]}, ${el[1]}</span>`
     }).join('');
