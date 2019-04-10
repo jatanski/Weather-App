@@ -51,6 +51,7 @@ export const setMainCity = (displayedCity) => {
     if (bttn) {
         document.querySelector('.search').removeChild(bttn);
     }
+    bttn.className = 'defCityButt'
     //po wyszukaniu sprawdza czy miasto wyszukane jest ustawione jako domyślne, jesli tak to return
     console.log(Cookies.get('isMainCity'));
     if (Cookies.get('isMainCity') == displayedCity) {

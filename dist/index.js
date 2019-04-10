@@ -6352,8 +6352,9 @@ var setMainCity = function setMainCity(displayedCity) {
 
   if (bttn) {
     document.querySelector('.search').removeChild(bttn);
-  } //po wyszukaniu sprawdza czy miasto wyszukane jest ustawione jako domyślne, jesli tak to return
+  }
 
+  bttn.className = 'defCityButt'; //po wyszukaniu sprawdza czy miasto wyszukane jest ustawione jako domyślne, jesli tak to return
 
   console.log(Cookies.get('isMainCity'));
 

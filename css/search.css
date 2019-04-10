@@ -37,7 +37,7 @@
     cursor: pointer;
 }
 
-#defCityButt {
+.defCityButt {
     position: relative;
     top: -35px;
     width: 50%;
