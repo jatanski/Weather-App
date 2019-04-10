@@ -6497,6 +6497,7 @@ var showPosition = function showPosition(position) {
 var completeNextHours = function completeNextHours(weat) {
   var wHour = 0;
   weat.forEach(function (hour) {
+    console.log(hour);
     var nextHour = new _NextWeather__WEBPACK_IMPORTED_MODULE_9__["NextHoursWeather"](hour);
     nextHourSections[wHour].children[0].textContent = nextHour.time;
     nextHourSections[wHour].children[1].textContent = "".concat(nextHour.temp, "\xB0C");
@@ -6531,26 +6532,35 @@ var sunRiseAndSunSet = function sunRiseAndSunSet(weat) {
 
 var showPollution = function showPollution(weat) {
   var airQuality = '';
+  var color = '';
 
   if (weat.mainus == "p1") {
     airQuality = "Dobra";
+    color = '#b0dd10';
   } else if (weat.mainus == "p2") {
     airQuality = "Umiarkowana";
-    console.log(airQuality);
+    color = '#ffd911';
   } else if (weat.mainus == "p3") {
     airQuality = "Dostateczna";
+    color = '#eb913a';
   } else if (weat.mainus == "p4") {
     airQuality = "Zła";
+    color = '#e73f3f';
   } else if (weat.mainus == "p5") {
     airQuality = "Bardzo zła";
+    color = '#a02c2c';
   } else if (weat.mainus == "p6") {
     airQuality = "Niebezpieczna dla życia";
+    color = '#440A24';
   } else {
     airQuality = "Brak danych";
+    color = '#aaa';
   }
 
-  console.log(airQuality);
-  pollutionSection.innerText = "Jako\u015B\u0107 powietrza jest: ".concat(airQuality);
+  console.log(weat.mainus);
+  pollutionSection.firstElementChild.innerText = "Jako\u015B\u0107 powietrza";
+  pollutionSection.lastElementChild.innerText = airQuality;
+  pollutionSection.lastElementChild.style.backgroundColor = color;
 };
 
 var showWeather = function showWeather(city) {
@@ -6813,8 +6823,8 @@ msg.rate = 1; // 0.1 to 10
 msg.pitch = 1; // 0 to 2
 
 function speakPolish() {
-  var nextDaysText = ", jutro w dzień " + _app__WEBPACK_IMPORTED_MODULE_2__["nextDaySections"][0].children[2].firstElementChild.textContent + ", w nocy " + _app__WEBPACK_IMPORTED_MODULE_2__["nextDaySections"][0].children[2].lastElementChild.textContent + ", pojutrze w dzień " + _app__WEBPACK_IMPORTED_MODULE_2__["nextDaySections"][1].children[2].firstElementChild.textContent + ", w nocy " + _app__WEBPACK_IMPORTED_MODULE_2__["nextDaySections"][1].children[2].lastElementChild.textContent;
-  msg.text = _app__WEBPACK_IMPORTED_MODULE_2__["city"].textContent.split(',')[0] + " obecnie " + _app__WEBPACK_IMPORTED_MODULE_2__["tempNow"].textContent + nextDaysText;
+  var nextDaysText = ", jutro w dzień będzie " + _app__WEBPACK_IMPORTED_MODULE_2__["nextDaySections"][0].children[2].firstElementChild.textContent + ", a w nocy " + _app__WEBPACK_IMPORTED_MODULE_2__["nextDaySections"][0].children[2].lastElementChild.textContent + ". Pojutrze w dzień " + _app__WEBPACK_IMPORTED_MODULE_2__["nextDaySections"][1].children[2].firstElementChild.textContent + ",a w nocy " + _app__WEBPACK_IMPORTED_MODULE_2__["nextDaySections"][1].children[2].lastElementChild.textContent;
+  msg.text = _app__WEBPACK_IMPORTED_MODULE_2__["city"].textContent.split(',')[0] + " obecnie temperatura wynosi" + _app__WEBPACK_IMPORTED_MODULE_2__["tempNow"].textContent + nextDaysText;
   console.log(msg.text);
   var voice = speaks[0];
   msg.voiceURI = voice.name;

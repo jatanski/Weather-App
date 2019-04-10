@@ -92,25 +92,33 @@ const sunRiseAndSunSet = (weat) => {
 
 const showPollution = (weat) => {
     let airQuality = ''
+    let color = ''
     if (weat.mainus == "p1") {
         airQuality = "Dobra"
+        color = '#b0dd10'
     } else if (weat.mainus == "p2") {
         airQuality = "Umiarkowana"
-        console.log(airQuality)
+        color = '#ffd911'
     } else if (weat.mainus == "p3") {
         airQuality = "Dostateczna"
+        color = '#eb913a'
     } else if (weat.mainus == "p4") {
         airQuality = "Zła"
+        color = '#e73f3f'
     } else if (weat.mainus == "p5") {
         airQuality = "Bardzo zła"
+        color = '#a02c2c'
     } else if (weat.mainus == "p6") {
         airQuality = "Niebezpieczna dla życia"
+        color = '#440A24'
     } else {
         airQuality = "Brak danych"
+        color = '#aaa'
     }
-
-    console.log(airQuality)
-    pollutionSection.innerText = `Jakość powietrza jest: ${airQuality}`
+    console.log(weat.mainus)
+    pollutionSection.firstElementChild.innerText = `Jakość powietrza`
+    pollutionSection.lastElementChild.innerText = airQuality
+    pollutionSection.lastElementChild.style.backgroundColor = color
 }
 
 const showWeather = (city) => {

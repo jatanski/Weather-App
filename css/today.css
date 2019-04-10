@@ -3,8 +3,9 @@
 .today-header {
     flex: 2;
     display: grid;
-    grid-template-rows: 40% 40% 20%;
-    grid-template-columns: 70% 30%;
+    position: relative;
+    grid-template-rows: 40% 60%;
+    grid-template-columns: 35% 35% 30%;
     margin: 0;
     color: var(--fontcolor)
 }
@@ -15,12 +16,18 @@
 }
 
 .city {
+    grid-area: 1 / 1 / span 1 / span 2;
     font-size: 2.4em;
 }
 
 .temp-now {
+    grid-area: 2 / 1 / span 1 / span 1;
     font-size: 5.8em;
     font-weight: bold;
+    text-align: center;
+    position: relative;
+    left: -10%;
+    bottom: 15%;
 }
 
 .today-header .fa-cloud-moon {
@@ -28,15 +35,16 @@
 }
 
 .sun-time {
-    grid-area: 2 / 2 / span 1 / span 1;
+    grid-area: 2 / 3 / span 1 / span 1;
     font-size: 1.8em;
     font-weight: bold;
+    text-align: center;
 }
 
 .sun-time p {
     position: relative;
     top: 30%;
-    transform: translateY(-50%)
+    transform: translateY(-50%);
 }
 
 .weather-ico-now {
@@ -48,11 +56,25 @@
 }
 
 .pollution {
-    grid-area: 3 / 1 / span 1 / span 2;
-    position: relative;
-
-    display: flex;
+    grid-area: 2 / 2 / span 1 / span 1;
     align-items: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    bottom: 1vh;
+}
+
+.air-quality {
+    height: 5vh;
+    width: 100%;
+    margin-top: 1vh;
+    line-height: 6vh;
+    font-size: 1.6em;
+    text-align: center;
+    height: 6vh;
+    background-color: #b0dd10;
+    border-radius: var(--radius);
+    color: var(--fontcolor);
 }
 
 /* Next Houres */
@@ -65,7 +87,7 @@
     overflow-y: auto;
 }
 
-.next-hour-wrapper > .line {
+.next-hour-wrapper>.line {
     height: 3px;
     width: 100%;
     margin: auto;
