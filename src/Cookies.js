@@ -6,16 +6,17 @@ export const isCookiesAllowed = () => {
     } else {
         //w tej części tworzę elementy z powiadomieniem o używaniu cookies
         const element = document.createElement('div');
-        element.setAttribute('class','cookie-confirmation');
+        element.setAttribute('class', 'cookie-confirmation');
         document.querySelector('.wrap').appendChild(element);
 
         const textInfo = document.createElement('p');
-        textInfo.innerText = 'Musisz akceptować cookies';
+        textInfo.className = 'cookies-p'
+        textInfo.innerText = 'Ta strona używa ciasteczek(cookies), dzięki czemu nasz serwis działa lepiej';
 
         element.appendChild(textInfo);
 
         const button = document.createElement('button');
-        button.setAttribute('id','cookiesAllowed');
+        button.setAttribute('id', 'cookiesAllowed');
         button.innerText = 'Zgadzam się';
 
         element.appendChild(button);
@@ -47,14 +48,14 @@ export const isMainCitySet = (setWeather, curLoc, curLocCallback) => {
 
 export const setMainCity = (displayedCity) => {
     const bttn = document.querySelector('#defCityButt'); //usuwa ew. przycisk z poprzedniego wyszukania
-    if(bttn){
+    if (bttn) {
         document.querySelector('.search').removeChild(bttn);
     }
     //po wyszukaniu sprawdza czy miasto wyszukane jest ustawione jako domyślne, jesli tak to return
     console.log(Cookies.get('isMainCity'));
     if (Cookies.get('isMainCity') == displayedCity) {
         return;
-    //jeśli nie ma domyślnego miasta lub jest to inne miasto to daje opcję ustawienia ciastka z miastem domyslnym
+        //jeśli nie ma domyślnego miasta lub jest to inne miasto to daje opcję ustawienia ciastka z miastem domyslnym
     } else {
         const setDefaultCityButton = document.createElement('button');
         setDefaultCityButton.innerText = 'Ustaw jako miasto domyślne';
@@ -63,11 +64,13 @@ export const setMainCity = (displayedCity) => {
         document.querySelector('.search').appendChild(setDefaultCityButton);
 
         setDefaultCityButton.addEventListener('click', e => {
-            Cookies.set('isMainCity', displayedCity, {expires:365});
+            Cookies.set('isMainCity', displayedCity, {
+                expires: 365
+            });
             //od razu usuwam przycisk bo po co pokazywać jak miasto domyślne?
             document.querySelector('.search').style.height = '80px';
             document.querySelector('.search').removeChild(setDefaultCityButton);
-            
+
         })
 
 

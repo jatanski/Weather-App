@@ -6317,7 +6317,8 @@ var isCookiesAllowed = function isCookiesAllowed() {
     element.setAttribute('class', 'cookie-confirmation');
     document.querySelector('.wrap').appendChild(element);
     var textInfo = document.createElement('p');
-    textInfo.innerText = 'Musisz akceptować cookies';
+    textInfo.className = 'cookies-p';
+    textInfo.innerText = 'Ta strona używa ciasteczek(cookies), dzięki czemu nasz serwis działa lepiej';
     element.appendChild(textInfo);
     var button = document.createElement('button');
     button.setAttribute('id', 'cookiesAllowed');
