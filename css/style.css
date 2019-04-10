@@ -17,7 +17,8 @@
     grid-template-columns: 1fr 1fr;
     grid-gap: 3vh 3vw;
     padding: 5vh;
-background: linear-gradient(135deg, rgba(208, 228, 247, 1) 0%, rgba(115, 177, 231, 1) 24%, rgba(10, 119, 213, 1) 50%, rgba(83, 159, 225, 1) 79%, rgba(135, 188, 234, 1) 100%);
+    background: linear-gradient(135deg, rgba(208, 228, 247, 1) 0%, rgba(115, 177, 231, 1) 24%, rgba(10, 119, 213, 1) 50%, rgba(83, 159, 225, 1) 79%, rgba(135, 188, 234, 1) 100%);
+    background-repeat: no-repeat
 }
 
 .wrapleft {
@@ -28,7 +29,8 @@ background: linear-gradient(135deg, rgba(208, 228, 247, 1) 0%, rgba(115, 177, 23
     grid-column: 2 / span 1;
 }
 
-.wrapleft > *, .wrapright > * {
+.wrapleft>*,
+.wrapright>* {
     border: 3px solid black;
     box-shadow: 6px 6px 5px 0px rgba(0, 0, 0, 0.75);
 }
@@ -101,7 +103,7 @@ background: linear-gradient(135deg, rgba(208, 228, 247, 1) 0%, rgba(115, 177, 23
 }
 
 @media screen and (max-width: 640px) {
-    
+
     html {
         background: linear-gradient(135deg, rgba(208, 228, 247, 1) 0%, rgba(115, 177, 231, 1) 24%, rgba(10, 119, 213, 1) 50%, rgba(83, 159, 225, 1) 79%, rgba(135, 188, 234, 1) 100%);
     }
