@@ -32,15 +32,16 @@ background: linear-gradient(135deg, rgba(208, 228, 247, 1) 0%, rgba(115, 177, 23
     border: 3px solid black;
     box-shadow: 6px 6px 5px 0px rgba(0, 0, 0, 0.75);
 }
+
 .search {
+    height: 80px;
     margin-bottom: 10px;
-    padding: 5px;
     background-color: var(--section);
     border-radius: var(--radius);
 
     display: flex;
     align-items: flex-start;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
 }
 

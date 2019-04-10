@@ -38,7 +38,9 @@
 }
 
 #defCityButt {
-    width: 97%;
+    position: relative;
+    top: -35px;
+    width: 90%;
     border-radius: 5px;
     margin: 5px;
     padding: 5px;

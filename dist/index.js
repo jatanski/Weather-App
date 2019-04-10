@@ -6362,12 +6362,14 @@ var setMainCity = function setMainCity(displayedCity) {
     var setDefaultCityButton = document.createElement('button');
     setDefaultCityButton.innerText = 'Ustaw jako miasto domyślne';
     setDefaultCityButton.setAttribute('id', 'defCityButt');
+    document.querySelector('.search').style.height = '130px';
     document.querySelector('.search').appendChild(setDefaultCityButton);
     setDefaultCityButton.addEventListener('click', function (e) {
       Cookies.set('isMainCity', displayedCity, {
         expires: 365
       }); //od razu usuwam przycisk bo po co pokazywać jak miasto domyślne?
 
+      document.querySelector('.search').style.height = '80px';
       document.querySelector('.search').removeChild(setDefaultCityButton);
     });
   }
