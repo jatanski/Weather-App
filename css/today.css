@@ -116,15 +116,19 @@
     width: 70px;
 }
 
-::-webkit-scrollbar {
-    width: 6px;
-}
+@media screen and (max-width: 640px) {
+    .air-quality {
+        padding: 10%;
+        line-height: 1.2em;
+    }
 
-::-webkit-scrollbar-thumb {
-    background: #555;
-    border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #888;
+    .temp-now {
+        grid-area: 2 / 1 / span 1 / span 1;
+        font-size: 4em;
+        font-weight: bold;
+        text-align: center;
+        position: relative;
+        left: -10%;
+        bottom: 15%;
+    }
 }

@@ -58,7 +58,7 @@ export const setMainCity = (displayedCity) => {
     } else {
         const setDefaultCityButton = document.createElement('button');
         setDefaultCityButton.innerText = 'Ustaw jako miasto domyślne';
-        setDefaultCityButton.setAttribute('id','defCityButt')
+        setDefaultCityButton.setAttribute('id', 'defCityButt')
         document.querySelector('.search').appendChild(setDefaultCityButton);
 
         setDefaultCityButton.addEventListener('click', e => {

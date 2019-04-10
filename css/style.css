@@ -14,20 +14,27 @@
 .wrap {
     display: grid;
     min-height: 100vh;
-    grid-template: 120px / repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
     grid-gap: 3vh 3vw;
     padding: 5vh;
 background: linear-gradient(135deg, rgba(208, 228, 247, 1) 0%, rgba(115, 177, 231, 1) 24%, rgba(10, 119, 213, 1) 50%, rgba(83, 159, 225, 1) 79%, rgba(135, 188, 234, 1) 100%);
 }
 
-.wrap > * {
+.wrapleft {
+    grid-column: 1 / span 1;
+}
+
+.wrapright {
+    grid-column: 2 / span 1;
+}
+
+.wrapleft > *, .wrapright > * {
     border: 3px solid black;
     box-shadow: 6px 6px 5px 0px rgba(0, 0, 0, 0.75);
 }
-
 .search {
-    padding: 0;
-    grid-area: 1 / 1 / 2 / 2;
+    margin-bottom: 10px;
+    padding: 5px;
     background-color: var(--section);
     border-radius: var(--radius);
 
@@ -41,7 +48,6 @@ background: linear-gradient(135deg, rgba(208, 228, 247, 1) 0%, rgba(115, 177, 23
     min-width: 500px;
     position: relative;
     padding: 20px;
-    grid-area: 1 / 2 / 3 / 3;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -51,7 +57,7 @@ background: linear-gradient(135deg, rgba(208, 228, 247, 1) 0%, rgba(115, 177, 23
 
 .next-days {
     min-width: 460px;
-    grid-area: 2 / 1 / 3 / 2;
+    height: auto;
     background-color: var(--section);
     border-radius: var(--radius);
 }
@@ -68,20 +74,29 @@ background: linear-gradient(135deg, rgba(208, 228, 247, 1) 0%, rgba(115, 177, 23
 }
 
 ::-webkit-scrollbar {
+    position: relative;
     width: 6px;
-}
-
-::-webkit-scrollbar-track {
-    display: none;
+    height: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
     background: #555;
-    border-radius: 3px;
+    border-radius: 5px;
+    border: solid 3px transparent;
 }
 
 ::-webkit-scrollbar-thumb:hover {
     background: #888;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+    border-radius: 10px;
+    border: solid 3px transparent;
+}
+
+.cookie-confirmation {
+    border: 3px solid black;
+    box-shadow: 6px 6px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 @media screen and (max-width: 640px) {
@@ -97,26 +112,25 @@ background: linear-gradient(135deg, rgba(208, 228, 247, 1) 0%, rgba(115, 177, 23
     }
 
     .search {
+        min-width: 0;
         width: 98%;
         margin: 5px;
-        height: 80px;
     }
 
     .next-days {
+        min-width: 0;
         width: 98%;
+        height: 160px;
         padding-left: 10px;
         padding-right: 60px;
         margin: 5px;
-        overflow: auto;
+        overflow: scroll;
     }
 
     .today {
         min-width: 0;
         width: 98%;
         margin: 5px;
-    }
-
-    ::-webkit-scrollbar {
-        display: none;
+        overflow-y: auto;
     }
 }
