@@ -168,7 +168,7 @@ const setWeatherData = (place) => {
         });
     daysWeather(place)
         .then(res => {
-            //console.log(res);
+            console.log(res);
             completeNextDays(res);
         })
         .catch(res => {

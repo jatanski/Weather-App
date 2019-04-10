@@ -6352,9 +6352,8 @@ var setMainCity = function setMainCity(displayedCity) {
 
   if (bttn) {
     document.querySelector('.search').removeChild(bttn);
-  }
+  } //po wyszukaniu sprawdza czy miasto wyszukane jest ustawione jako domyślne, jesli tak to return
 
-  bttn.className = 'defCityButt'; //po wyszukaniu sprawdza czy miasto wyszukane jest ustawione jako domyślne, jesli tak to return
 
   console.log(Cookies.get('isMainCity'));
 
@@ -6606,19 +6605,16 @@ var setWeatherData = function setWeatherData(place) {
   });
   Object(_weatherResponse__WEBPACK_IMPORTED_MODULE_7__["hourWeather"])(place).then(function (res) {
     completeNextHours(res);
-  }).catch(function (res) {
-    console.log("hourWeather: " + res);
+  }).catch(function (res) {// console.log("hourWeather: " + res);
   });
   Object(_weatherResponse__WEBPACK_IMPORTED_MODULE_7__["daysWeather"])(place).then(function (res) {
     //console.log(res);
     completeNextDays(res);
-  }).catch(function (res) {
-    console.log("daysWeather: " + res);
+  }).catch(function (res) {// console.log("daysWeather: " + res);
   });
   Object(_weatherResponse__WEBPACK_IMPORTED_MODULE_7__["pollutionWeather"])(latitude, longitude).then(function (res) {
     showPollution(res);
-  }).catch(function (res) {
-    console.log("pollutionWeather: " + res);
+  }).catch(function (res) {// console.log("pollutionWeather: " + res);
   });
 };
 
