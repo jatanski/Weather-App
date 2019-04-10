@@ -22,7 +22,7 @@
 
 .temp-now {
     grid-area: 2 / 1 / span 1 / span 1;
-    font-size: 5.8em;
+    font-size: 5em;
     font-weight: bold;
     text-align: center;
     position: relative;
@@ -31,7 +31,7 @@
 }
 
 .today-header .fa-cloud-moon {
-    font-size: 8.4em;
+    font-size: 8em;
 }
 
 .sun-time {
@@ -56,6 +56,7 @@
 }
 
 .pollution {
+    padding: 0 20px;
     grid-area: 2 / 2 / span 1 / span 1;
     align-items: center;
     display: flex;
@@ -69,7 +70,7 @@
     width: 100%;
     margin-top: 1vh;
     line-height: 6vh;
-    font-size: 1.6em;
+    font-size: 1em;
     text-align: center;
     height: 6vh;
     background-color: #b0dd10;
