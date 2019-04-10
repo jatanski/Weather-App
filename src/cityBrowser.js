@@ -57,7 +57,7 @@ export const findMatches = (e) => {
 }
 
 export function searchLi(e) {
-    console.log(e.target.innerText);
-    showWeather(e.target.innerText)
+    console.log(e.target.innerText.split(','));
+    showWeather(e.target.innerText.split(',')[0]);
     searchBox.style.marginTop = 0;
 }

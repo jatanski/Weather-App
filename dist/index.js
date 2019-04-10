@@ -6605,16 +6605,19 @@ var setWeatherData = function setWeatherData(place) {
   });
   Object(_weatherResponse__WEBPACK_IMPORTED_MODULE_7__["hourWeather"])(place).then(function (res) {
     completeNextHours(res);
-  }).catch(function (res) {// console.log("hourWeather: " + res);
+  }).catch(function (res) {
+    console.log("hourWeather: " + res);
   });
   Object(_weatherResponse__WEBPACK_IMPORTED_MODULE_7__["daysWeather"])(place).then(function (res) {
-    //console.log(res);
+    console.log(res);
     completeNextDays(res);
-  }).catch(function (res) {// console.log("daysWeather: " + res);
+  }).catch(function (res) {
+    console.log("daysWeather: " + res);
   });
   Object(_weatherResponse__WEBPACK_IMPORTED_MODULE_7__["pollutionWeather"])(latitude, longitude).then(function (res) {
     showPollution(res);
-  }).catch(function (res) {// console.log("pollutionWeather: " + res);
+  }).catch(function (res) {
+    console.log("pollutionWeather: " + res);
   });
 };
 
@@ -6662,17 +6665,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es6_symbol__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_symbol__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/web.dom.iterable */ "./node_modules/core-js/modules/web.dom.iterable.js");
 /* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/es6.function.name */ "./node_modules/core-js/modules/es6.function.name.js");
-/* harmony import */ var core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var core_js_modules_es7_array_includes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! core-js/modules/es7.array.includes */ "./node_modules/core-js/modules/es7.array.includes.js");
-/* harmony import */ var core_js_modules_es7_array_includes__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es7_array_includes__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var core_js_modules_es6_string_includes__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! core-js/modules/es6.string.includes */ "./node_modules/core-js/modules/es6.string.includes.js");
-/* harmony import */ var core_js_modules_es6_string_includes__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_string_includes__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _db_world_cities_json_json__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../db/world-cities_json.json */ "./db/world-cities_json.json");
-var _db_world_cities_json_json__WEBPACK_IMPORTED_MODULE_10___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../db/world-cities_json.json */ "./db/world-cities_json.json", 1);
-/* harmony import */ var _db_miasta_json__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../db/miasta_.json */ "./db/miasta_.json");
-var _db_miasta_json__WEBPACK_IMPORTED_MODULE_11___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../db/miasta_.json */ "./db/miasta_.json", 1);
-/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./app */ "./src/app.js");
+/* harmony import */ var core_js_modules_es6_regexp_split__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/es6.regexp.split */ "./node_modules/core-js/modules/es6.regexp.split.js");
+/* harmony import */ var core_js_modules_es6_regexp_split__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_regexp_split__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! core-js/modules/es6.function.name */ "./node_modules/core-js/modules/es6.function.name.js");
+/* harmony import */ var core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var core_js_modules_es7_array_includes__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! core-js/modules/es7.array.includes */ "./node_modules/core-js/modules/es7.array.includes.js");
+/* harmony import */ var core_js_modules_es7_array_includes__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es7_array_includes__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var core_js_modules_es6_string_includes__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! core-js/modules/es6.string.includes */ "./node_modules/core-js/modules/es6.string.includes.js");
+/* harmony import */ var core_js_modules_es6_string_includes__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_string_includes__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _db_world_cities_json_json__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../db/world-cities_json.json */ "./db/world-cities_json.json");
+var _db_world_cities_json_json__WEBPACK_IMPORTED_MODULE_11___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../db/world-cities_json.json */ "./db/world-cities_json.json", 1);
+/* harmony import */ var _db_miasta_json__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../db/miasta_.json */ "./db/miasta_.json");
+var _db_miasta_json__WEBPACK_IMPORTED_MODULE_12___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../db/miasta_.json */ "./db/miasta_.json", 1);
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./app */ "./src/app.js");
+
 
 
 
@@ -6701,14 +6707,14 @@ var searchBox = document.querySelector('.prompt');
 var lub = document.getElementsByClassName('li-element');
 var liList = [];
 var findMatches = function findMatches(e) {
-  console.log(_db_miasta_json__WEBPACK_IMPORTED_MODULE_11__);
+  console.log(_db_miasta_json__WEBPACK_IMPORTED_MODULE_12__);
   if (e.target.value.length < 3) // Don't search for short strings
     return;
   var searchText = e.target.value.toLowerCase();
   var polishCities = [];
 
-  for (var i = 0; i < _db_miasta_json__WEBPACK_IMPORTED_MODULE_11__.length; i++) {
-    var el = _db_miasta_json__WEBPACK_IMPORTED_MODULE_11__[i].cities;
+  for (var i = 0; i < _db_miasta_json__WEBPACK_IMPORTED_MODULE_12__.length; i++) {
+    var el = _db_miasta_json__WEBPACK_IMPORTED_MODULE_12__[i].cities;
 
     for (var j = 0; j < el.length; j++) {
       polishCities.push([el[j].text_simple.toLowerCase(), "Poland"]);
@@ -6718,7 +6724,7 @@ var findMatches = function findMatches(e) {
   polishCities = polishCities.filter(function (city) {
     return city[0].includes(searchText);
   });
-  var cities = _db_world_cities_json_json__WEBPACK_IMPORTED_MODULE_10__.slice();
+  var cities = _db_world_cities_json_json__WEBPACK_IMPORTED_MODULE_11__.slice();
   cities = cities.map(function (city) {
     return [city.name.toLowerCase(), city.country];
   });
@@ -6738,8 +6744,8 @@ var findMatches = function findMatches(e) {
   });
 };
 function searchLi(e) {
-  console.log(e.target.innerText);
-  Object(_app__WEBPACK_IMPORTED_MODULE_12__["showWeather"])(e.target.innerText);
+  console.log(e.target.innerText.split(','));
+  Object(_app__WEBPACK_IMPORTED_MODULE_13__["showWeather"])(e.target.innerText.split(',')[0]);
   searchBox.style.marginTop = 0;
 }
 
